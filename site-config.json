@@ -164,38 +164,38 @@
   "schedule": {
     "0": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "1": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "2": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "3": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "4": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "5": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     },
     "6": {
       "active": true,
-      "from": "11:00",
-      "to": "21:00"
+      "from": 8,
+      "to": 16
     }
   },
   "announcement": {
