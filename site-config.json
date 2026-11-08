@@ -165,37 +165,37 @@
     "0": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 22
     },
     "1": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     },
     "2": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     },
     "3": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     },
     "4": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     },
     "5": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     },
     "6": {
       "active": true,
       "from": 8,
-      "to": 16
+      "to": 21
     }
   },
   "announcement": {
