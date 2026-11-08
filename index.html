@@ -966,8 +966,8 @@ const DEFAULT_DH_CONFIG = {
     6: { active: false, from: 11, to: 20 }  // Суббота
   },
   announcement: {
-    enabled: true,
-    text: "✨ Центр Здоровых Волос — профессиональная диагностика кожи головы на трихоскопе и спа-программы! Запись открыта.",
+    enabled: false,
+    text: "",
     style: "purple"
   },
   contacts: {
@@ -1202,6 +1202,7 @@ function applySiteConfig(cfg) {
       banner.className = 'announcement-banner' + (ann.style ? ' style-' + ann.style : '');
       banner.style.display = 'flex';
     } else {
+      bannerText.textContent = '';
       banner.style.display = 'none';
     }
   }
@@ -2377,9 +2378,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <!-- Верхний баннер срочных объявлений (управляется из админки) -->
-<div id="announcement-banner" class="announcement-banner" style="display:flex">
+<div id="announcement-banner" class="announcement-banner" style="display:none">
   <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-  <span id="announcement-text">Центр Здоровых Волос в Астрахани — профессиональная диагностика кожи головы на трихоскопе и спа-программы. Запись открыта.</span>
+  <span id="announcement-text"></span>
 </div>
 <header class="sticky top-0 z-30 bg-white/95 backdrop-blur" style="border-bottom:1px solid var(--line)">
   <div class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-3">
