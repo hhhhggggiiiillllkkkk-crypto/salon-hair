@@ -3,6 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Защита от Clickjacking / UI Redressing -->
+<style id="antiClickjack">body{display:none !important;}</style>
+<script>
+  if (self === top) {
+    var acj = document.getElementById("antiClickjack");
+    if (acj) acj.parentNode.removeChild(acj);
+  } else {
+    top.location = self.location;
+  }
+</script>
 <title>Центр Здоровых Волос в Астрахани: трихоскопия, реконструкция и восстановление волос</title>
 <meta name="description" content="Центр Здоровых Волос в Астрахани: диагностика на трихоскопе, консультация трихолога-эстетиста, кератин, ботокс, нанопластика, СПА-программы, курс против выпадения. Онлайн-запись.">
 <meta property="og:title" content="Центр Здоровых Волос, Астрахань">
@@ -12,7 +22,319 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-<style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.sticky{position:sticky}.inset-0{inset:0}.bottom-3{bottom:.75rem}.left-1\/2{left:50%}.top-0{top:0}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.col-span-2{grid-column:span 2/span 2}.row-span-2{grid-row:span 2/span 2}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-12{height:3rem}.h-72{height:18rem}.min-h-72{min-height:18rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-full{width:100%}.w-max{width:-moz-max-content;width:max-content}.min-w-0{min-width:0}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-\[calc\(100vw-1rem\)\]{max-width:calc(100vw - 1rem)}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded-xl{border-radius:.75rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.border-0{border-width:0}.border-2{border-width:2px}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/95{background-color:hsla(0,0%,100%,.95)}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-24{padding-bottom:6rem}.pb-5{padding-bottom:1.25rem}.pt-0{padding-top:0}.text-center{text-align:center}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}.underline{text-decoration-line:underline}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}@media (min-width:640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:768px){.md\:col-span-2{grid-column:span 2/span 2}.md\:col-span-3{grid-column:span 3/span 3}.md\:flex{display:flex}.md\:h-full{height:100%}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.md\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.md\:justify-end{justify-content:flex-end}.md\:p-8{padding:2rem}.md\:py-24{padding-top:6rem;padding-bottom:6rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}</style>
+<style>*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.sticky{position:sticky}.inset-0{inset:0}.bottom-3{bottom:.75rem}.left-1\/2{left:50%}.top-0{top:0}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.col-span-2{grid-column:span 2/span 2}.row-span-2{grid-row:span 2/span 2}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.ml-auto{margin-left:auto}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-3{margin-top:.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-11{height:2.75rem}.h-12{height:3rem}.h-72{height:18rem}.min-h-72{min-height:18rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-full{width:100%}.w-max{width:-moz-max-content;width:max-content}.min-w-0{min-width:0}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-5xl{max-width:64rem}.max-w-\[calc\(100vw-1rem\)\]{max-width:calc(100vw - 1rem)}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.truncate{overflow:hidden;text-overflow:ellipsis}.truncate,.whitespace-nowrap{white-space:nowrap}.rounded-xl{border-radius:.75rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.border-0{border-width:0}.border-2{border-width:2px}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-white\/95{background-color:hsla(0,0%,100%,.95)}.p-1\.5{padding:.375rem}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-14{padding-top:3.5rem;padding-bottom:3.5rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-24{padding-bottom:6rem}.pb-5{padding-bottom:1.25rem}.pt-0{padding-top:0}.text-center{text-align:center}.text-left{text-align:left}.text-2xl{font-size:1.5rem;line-height:2rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-tight{line-height:1.25}.leading-relaxed{line-height:1.625}.underline{text-decoration-line:underline}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.backdrop-blur{--tw-backdrop-blur:blur(8px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}@media (min-width:640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.sm\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:768px){.md\:col-span-2{grid-column:span 2/span 2}.md\:col-span-3{grid-column:span 3/span 3}.md\:flex{display:flex}.md\:h-full{height:100%}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.md\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.md\:justify-end{justify-content:flex-end}.md\:p-8{padding:2rem}.md\:py-24{padding-top:6rem;padding-bottom:6rem}.md\:text-6xl{font-size:3.75rem;line-height:1}.md\:text-base{font-size:1rem;line-height:1.5rem}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-sm{font-size:.875rem;line-height:1.25rem}}@media (min-width:1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* ===== СТИЛИ АДМИН-ПАНЕЛИ, ЗАЩИТЫ И БАННЕРА ===== */
+.adm-svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+.adm-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+}
+.adm-btn-primary, .adm-btn-secondary, .adm-btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.announcement-banner {
+  background: linear-gradient(90deg, #8A3FFC 0%, #6929c4 100%);
+  color: #ffffff;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  z-index: 40;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.announcement-banner.style-gold {
+  background: linear-gradient(90deg, #996515 0%, #B8860B 50%, #7d510b 100%);
+  color: #fff;
+}
+.announcement-banner.style-amber {
+  background: linear-gradient(90deg, #D97706 0%, #B45309 100%);
+  color: #fff;
+}
+
+.adm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(15, 12, 20, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+.adm-modal-overlay[hidden] { display: none !important; }
+
+.adm-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+  border: 1px solid rgba(138, 63, 252, 0.15);
+  animation: admFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1f2937;
+}
+
+@keyframes admFadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.adm-header {
+  background: linear-gradient(135deg, #2b2430 0%, #1a1520 100%);
+  color: #ffffff;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.adm-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #fff;
+}
+.adm-close-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.adm-close-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+.adm-body {
+  padding: 22px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.adm-tabs {
+  display: flex;
+  gap: 6px;
+  background: #f3f4f6;
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.adm-tab-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 9px;
+  border: none;
+  background: transparent;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.adm-tab-btn.active {
+  background: #ffffff;
+  color: #8A3FFC;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.adm-form-group {
+  margin-bottom: 15px;
+}
+.adm-form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 5px;
+}
+.adm-hint {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+.adm-input, .adm-textarea, .adm-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+  background: #fff;
+}
+.adm-input:focus, .adm-textarea:focus, .adm-select:focus {
+  border-color: #8A3FFC;
+  box-shadow: 0 0 0 3px rgba(138, 63, 252, 0.15);
+}
+
+.adm-btn-primary {
+  background: linear-gradient(135deg, #8A3FFC 0%, #6929c4 100%);
+  color: #ffffff;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+.adm-btn-primary:hover {
+  box-shadow: 0 4px 14px rgba(138, 63, 252, 0.35);
+  transform: translateY(-1px);
+}
+.adm-btn-success {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+.adm-btn-success:hover {
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  transform: translateY(-1px);
+}
+.adm-btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.adm-btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+.adm-alert {
+  padding: 11px 14px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.adm-alert.danger { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+.adm-alert.success { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+.adm-alert.info { background: #f5f3ff; border: 1px solid #ddd6fe; color: #6d28d9; }
+.adm-alert.warning { background: #fffbeb; border: 1px solid #fef3c7; color: #b45309; }
+
+.adm-day-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #f9fafb;
+  margin-bottom: 6px;
+  gap: 8px;
+  border: 1px solid #f3f4f6;
+}
+.adm-day-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  margin: 0;
+  cursor: pointer;
+  color: #1f2937;
+}
+.adm-day-hours {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #4b5563;
+}
+.adm-day-hours select {
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 0.78rem;
+  background: #fff;
+}
+
+.adm-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #10B981;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  font-weight: 600;
+  font-size: 0.95rem;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  animation: admFadeIn 0.25s ease;
+}
+
+</style>
 <style>
 /* Фирменные цвета и шрифты */
 :root{--bg:#fff;--soft:#fdf2fb;--card:#fff;--ink:#2b2430;--mute:#6b6370;--em:#b9479f;--em-d:#99347f;--pink:#e48fd8;--line:#f0dcec;--dark:#2b2430;--fh:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif;--r:1.1rem}
@@ -85,6 +407,48 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 </style>
 
 <script>
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Защита от Timing Attacks (посимвольное сравнение за постоянное время)
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  let mismatch = a.length === b.length ? 0 : 1;
+  const len = Math.max(a.length, b.length);
+  for (let i = 0; i < len; i++) {
+    const charA = i < a.length ? a.charCodeAt(i) : 0;
+    const charB = i < b.length ? b.charCodeAt(i) : 0;
+    mismatch |= (charA ^ charB);
+  }
+  return mismatch === 0;
+}
+
+// Защита от опасных псевдо-протоколов (javascript:, data: и др.)
+function sanitizeUrl(url) {
+  if (!url) return '#';
+  const trimmed = String(url).trim();
+  if (/^(https?:\/\/|tel:\+?|mailto:)/i.test(trimmed) && !trimmed.toLowerCase().startsWith('javascript:')) {
+    return trimmed;
+  }
+  return '#';
+}
+
+function sanitizeImageUrl(url) {
+  if (!url) return '';
+  const trimmed = String(url).trim();
+  if (/^(https?:\/\/|\/|\.\/|images\/|data:image\/)/i.test(trimmed) && !trimmed.toLowerCase().startsWith('javascript:')) {
+    return trimmed;
+  }
+  return '';
+}
+
 // ===== НАСТРОЙКИ СВЯЗИ И ГРАФИКА =====
 // Мессенджер MAX:
 const MAX_URL = "https://max.ru/u/f9LHodD0cOKH4tpDfES8s2NN1KwC1JOP-9gtKVqNoGkdJImpYloST-JvAvc";
@@ -208,6 +572,35 @@ document.addEventListener('DOMContentLoaded', () => {
     draw();
   }));
   draw();
+
+  // Синхронизация выбора услуг
+  window._selectedServices = sel;
+  window.syncServicesSelection = function() {
+    document.querySelectorAll('.svc').forEach(c => {
+      const s = c.dataset.s;
+      const isSel = sel.has(s);
+      c.classList.toggle('sel', isSel);
+      const b = c.querySelector('.pick');
+      if (b) {
+        b.setAttribute('aria-pressed', isSel);
+        b.textContent = isSel ? '✓ Выбрано' : 'Выбрать услугу';
+      }
+    });
+  };
+
+  // Делегирование клика по услугам
+  const svcContainer = document.getElementById('services-container');
+  if (svcContainer) {
+    svcContainer.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') return;
+      const card = e.target.closest('.svc');
+      if (!card) return;
+      const s = card.dataset.s;
+      if (!s) return;
+      sel.has(s) ? sel.delete(s) : sel.add(s);
+      draw();
+    });
+  }
 
   // Кнопка в первом экране перекидывает к плашке подбора процедуры
   const heroQuick = $('#hero-quick-consult');
@@ -363,6 +756,1434 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ====================================================================
+// ===== СИСТЕМА УПРАВЛЕНИЯ САЙТОМ, ШИФРОВАНИЯ И ЗАЩИТЫ (ADMIN CORE) =====
+// ====================================================================
+
+const DH_STORAGE_KEY = 'dh_site_config_v2';
+const DH_AUTH_KEY = 'dh_admin_auth_v2';
+const DH_SESSION_KEY = 'dh_admin_session_v2';
+const DH_LOCKOUT_KEY = 'dh_admin_lockout_v2';
+const DH_ATTEMPTS_KEY = 'dh_admin_fail_attempts_v2';
+
+// Предустановленный доступ администратора (можно изменить в любой момент в админке)
+const DEFAULT_DH_AUTH = {
+  login: "drhair_admin",
+  email: "krugalik@mail.ru",
+  salt: "6bffc229d6b95a34b1d1bf9300e2c56d",
+  hash: "af2c0022c1b7ad8e8575ac8de9a6e515786fdfddc60e6717e44ef3decc054498",
+  masterKey: "DH-HAIR-30PRO",
+  createdAt: "2026-11-08T12:00:00.000Z"
+};
+
+// Автоматическая установка логина drhair_admin и пароля Salon30!Astra
+// При этом сохраняем ЛЮБУЮ почту, которую ввёл пользователь (почту НЕ трогаем!)
+(function initDrHairCredentials() {
+  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v3';
+  try {
+    if (!localStorage.getItem(MIGRATION_KEY)) {
+      let existing = null;
+      try { existing = JSON.parse(localStorage.getItem(DH_AUTH_KEY)); } catch(e){}
+      
+      // Почту НЕ трогаем! Если в браузере уже была почта, бережно сохраняем её
+      const preservedEmail = (existing && existing.email && existing.email.trim()) ? existing.email.trim() : DEFAULT_DH_AUTH.email;
+      const preservedMasterKey = (existing && existing.masterKey) ? existing.masterKey : DEFAULT_DH_AUTH.masterKey;
+
+      const activeAuth = {
+        login: DEFAULT_DH_AUTH.login,      // drhair_admin
+        email: preservedEmail,             // почту НЕ трогаем!
+        salt: DEFAULT_DH_AUTH.salt,
+        hash: DEFAULT_DH_AUTH.hash,        // хэш пароля Salon30!Astra
+        masterKey: preservedMasterKey,
+        createdAt: new Date().toISOString()
+      };
+
+      localStorage.setItem(DH_AUTH_KEY, JSON.stringify(activeAuth));
+      localStorage.setItem(DH_ATTEMPTS_KEY, '0'); // Сбрасываем счётчик ошибок в 0
+      localStorage.removeItem(DH_LOCKOUT_KEY);     // Снимаем блокировку
+      localStorage.setItem(MIGRATION_KEY, 'true');
+    }
+  } catch(err) {
+    console.warn('Auth init notice:', err);
+  }
+})();
+
+function getActiveAuth() {
+  try {
+    const raw = localStorage.getItem(DH_AUTH_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && (parsed.hash || parsed.login)) return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_DH_AUTH;
+}
+
+
+// 1. Дефолтная конфигурация Центра Здоровых Волос
+const DEFAULT_DH_CONFIG = {
+  hoursShort: "Пн и Вс: 11:00–20:00 · Вт–Сб: выходной",
+  hoursDetail: "Понедельник: 11:00–20:00\nВторник – суббота: выходной\nВоскресенье: 11:00–20:00",
+  schedule: {
+    0: { active: true, from: 11, to: 20 }, // Воскресенье
+    1: { active: true, from: 11, to: 20 }, // Понедельник
+    2: { active: false, from: 11, to: 20 }, // Вторник
+    3: { active: false, from: 11, to: 20 }, // Среда
+    4: { active: false, from: 11, to: 20 }, // Четверг
+    5: { active: false, from: 11, to: 20 }, // Пятница
+    6: { active: false, from: 11, to: 20 }  // Суббота
+  },
+  announcement: {
+    enabled: true,
+    text: "✨ Центр Здоровых Волос — профессиональная диагностика кожи головы на трихоскопе и спа-программы! Запись открыта.",
+    style: "purple"
+  },
+  contacts: {
+    phoneText: "+7 (988) 063-98-60",
+    phoneDigits: "79880639860",
+    telegram: "VK30rus",
+    telegramChannel: "drhair30",
+    maxUrl: "https://max.ru/u/f9LHodD0cOKH4tpDfES8s2NN1KwC1JOP-9gtKVqNoGkdJImpYloST-JvAvc"
+  },
+  services: [
+  {
+    "id": "s1",
+    "name": "Диагностика кожи головы и волос на трихоскопе",
+    "title": "Диагностика кожи головы и волос на трихоскопе",
+    "desc": "Компьютерный осмотр волосяных фолликулов и кожи под многократным увеличением для выявления причин выпадения и точного подбора курса.",
+    "price": "Бесплатно при процедуре",
+    "images": [
+      "images/2.jpg",
+      "images/3.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  },
+  {
+    "id": "s2",
+    "name": "Спа-программы для волос",
+    "title": "Спа-программы для волос",
+    "desc": "Комплексный релакс-уход: бережное глубокое очищение кожи головы, пилинг, расслабляющий массаж и интенсивное питание.",
+    "price": "от 3 500 ₽",
+    "images": [
+      "images/14.jpg",
+      "images/15.jpg",
+      "images/16.jpg",
+      "images/17.jpg"
+    ],
+    "gridClass": "grid-4",
+    "visible": true
+  },
+  {
+    "id": "s3",
+    "name": "Авторский курс против выпадения волос для женщин",
+    "title": "Курс против выпадения волос для женщин",
+    "desc": "Авторский протокол восстановления густоты: укрепляет волосяные фолликулы, пробуждает спящие луковицы и останавливает выпадение уже после 1-й процедуры.",
+    "price": "от 4 000 ₽",
+    "images": [
+      "images/loss_f1.jpg",
+      "images/loss_f2.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  },
+  {
+    "id": "s4",
+    "name": "Авторский курс против выпадения волос для мужчин",
+    "title": "Курс против выпадения волос для мужчин",
+    "desc": "Эффективный протокол против андрогенного поредения и алопеции: блокирует выпадение, активирует рост волос на залысинах и уплотняет структуру.",
+    "price": "от 4 000 ₽",
+    "images": [
+      "images/4.jpg",
+      "images/5.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  },
+  {
+    "id": "s5",
+    "name": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия и тд)",
+    "title": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия)",
+    "desc": "Тотальное преображение структуры: идеальная гладкость, зеркальный блеск, плотность и устранение пушистости на срок до 6 месяцев.",
+    "price": "от 3 500 ₽",
+    "images": [
+      "images/6.jpg",
+      "images/7.jpg",
+      "images/8.jpg",
+      "images/9.jpg"
+    ],
+    "gridClass": "grid-4",
+    "visible": true
+  },
+  {
+    "id": "s6",
+    "name": "Восстановление волос любой сложности",
+    "title": "Восстановление волос любой сложности",
+    "desc": "Спасение сильно повреждённых, обесцвеченных и ломких волос. Восполнение утраченных липидов и протеинового каркаса волоса.",
+    "price": "от 3 000 ₽",
+    "images": [
+      "images/restore_1.jpg",
+      "images/restore_2.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  },
+  {
+    "id": "s7",
+    "name": "Холодный салонный уход для волос",
+    "title": "Холодный салонный уход для волос",
+    "desc": "Бережная процедура без горячих утюжков: интенсивное насыщение влагой, эластичность, гладкость и здоровое сияние.",
+    "price": "от 2 500 ₽",
+    "images": [
+      "images/cold_1.jpg",
+      "images/cold_2.jpg",
+      "images/cold_3.jpg"
+    ],
+    "gridClass": "grid-3",
+    "visible": true
+  },
+  {
+    "id": "s8",
+    "name": "Прикорневой объём на кератине Wowboost",
+    "title": "Прикорневой объём на кератине Wowboost",
+    "desc": "Стойкий естественный объём у корней по авторской методике Wowboost без заломов и гофре. Держится от 3 до 5 месяцев.",
+    "price": "от 3 000 ₽",
+    "images": [
+      "images/10.jpg",
+      "images/11.jpg",
+      "images/12.jpg",
+      "images/13.jpg"
+    ],
+    "gridClass": "grid-4",
+    "visible": true
+  },
+  {
+    "id": "s9",
+    "name": "Пилинг кожи головы и детокс системы",
+    "title": "Пилинг кожи головы и детокс системы",
+    "desc": "Глубокое очищение от себума, стайлинга и ороговевших клеток. Улучшает микроциркуляцию и насыщает волосяные луковицы кислородом.",
+    "price": "от 2 000 ₽",
+    "images": [
+      "images/peel_1.jpg",
+      "images/peel_2.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  },
+  {
+    "id": "s10",
+    "name": "Уход за детскими волосами",
+    "title": "Уход за детскими волосами",
+    "desc": "Деликатные гипоаллергенные салонные уходы для лёгкого расчёсывания, мягкости, послушности и бережной защиты детских волос.",
+    "price": "от 1 500 ₽",
+    "images": [
+      "images/kids.jpg"
+    ],
+    "gridClass": "grid-1",
+    "visible": true
+  },
+  {
+    "id": "s11",
+    "name": "Полировка волос и стрижка кончиков",
+    "title": "Полировка волос и стрижка кончиков",
+    "desc": "Бережное удаление до 90% секущихся концов по всей длине с сохранением максимальной длины волос и создание аккуратного ровного среза.",
+    "price": "от 1 000 ₽",
+    "images": [
+      "images/polish_1.jpg",
+      "images/polish_2.jpg"
+    ],
+    "gridClass": "grid-2",
+    "visible": true
+  }
+]
+};
+
+const DAY_NAMES = [
+  'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
+];
+
+function getActiveConfig() {
+  try {
+    const raw = localStorage.getItem(DH_STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return DEFAULT_DH_CONFIG;
+}
+
+function saveActiveConfig(cfg) {
+  try {
+    localStorage.setItem(DH_STORAGE_KEY, JSON.stringify(cfg));
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.code === 22) {
+      alert('Внимание: лимит локального хранилища браузера исчерпан. Пожалуйста, удалите лишние фотографии или уменьшите их количество.');
+    }
+  }
+}
+
+// 2. Криптографическое хеширование паролей (Web Crypto API SHA-256 + Salt)
+async function sha256Hex(text) {
+  const enc = new TextEncoder();
+  const data = enc.encode(text);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function generateRandomSalt() {
+  const arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// 3. Применение конфигурации к элементам страницы
+function applySiteConfig(cfg) {
+  if (!cfg) cfg = getActiveConfig();
+
+  // Часы кратко
+  const hrsEls = document.querySelectorAll('[data-hrs]');
+  hrsEls.forEach(e => e.textContent = cfg.hoursShort || DEFAULT_DH_CONFIG.hoursShort);
+
+  // Часы подробно в контактах (с экранированием HTML от DOM XSS)
+  const detailEl = document.getElementById('contacts-hours-detail');
+  if (detailEl) {
+    const text = cfg.hoursDetail || DEFAULT_DH_CONFIG.hoursDetail;
+    detailEl.innerHTML = escapeHtml(text).replace(/\n/g, '<br>');
+  }
+
+  // Контакты (с фильтрацией опасных ссылок)
+  const c = cfg.contacts || DEFAULT_DH_CONFIG.contacts;
+  document.querySelectorAll('[data-ph]').forEach(e => e.textContent = c.phoneText);
+  document.querySelectorAll('[data-l="tel"]').forEach(e => e.href = 'tel:+' + c.phoneDigits);
+  document.querySelectorAll('[data-l="wa"]').forEach(e => e.href = 'https://wa.me/' + c.phoneDigits);
+  document.querySelectorAll('[data-l="tg"]').forEach(e => e.href = 'https://t.me/' + c.telegram);
+  document.querySelectorAll('[data-l="ch"]').forEach(e => e.href = 'https://t.me/' + c.telegramChannel);
+  document.querySelectorAll('[data-l="max"]').forEach(e => e.href = sanitizeUrl(c.maxUrl));
+
+  // Баннер объявления: автоматически показывается сверху, если есть текст
+  const banner = document.getElementById('announcement-banner');
+  const bannerText = document.getElementById('announcement-text');
+  if (banner && bannerText) {
+    const ann = cfg.announcement || DEFAULT_DH_CONFIG.announcement;
+    const text = (ann && ann.text ? ann.text.trim() : '');
+    if (text) {
+      bannerText.textContent = text;
+      banner.className = 'announcement-banner' + (ann.style ? ' style-' + ann.style : '');
+      banner.style.display = 'flex';
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  // Каталог услуг
+  if (cfg.services) renderServicesCatalog(cfg.services);
+
+  // Пересчет рабочего статуса
+  updateSalonStatus();
+}
+
+// 4. Проверка рабочего времени Центра Здоровых Волос
+function updateSalonStatus() {
+  let isOpen = false;
+  let statusText = 'Сейчас закрыто';
+  const cfg = getActiveConfig();
+  const sched = cfg.schedule || DEFAULT_DH_CONFIG.schedule;
+
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Europe/Astrakhan',
+      weekday: 'short',
+      hour: 'numeric',
+      hourCycle: 'h23'
+    });
+    const parts = formatter.formatToParts(new Date());
+    const wdStr = parts.find(p => p.type === 'weekday').value;
+    const hour = parseInt(parts.find(p => p.type === 'hour').value, 10);
+    const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    const day = dayMap[wdStr] ?? new Date().getDay();
+    const today = sched[day];
+
+    if (today && today.active && hour >= today.from && hour < today.to) {
+      isOpen = true;
+      statusText = 'Открыто сейчас (до ' + today.to + ':00)';
+    } else if (!today || !today.active) {
+      statusText = 'Сейчас закрыто (выходной)';
+    } else if (hour < today.from) {
+      statusText = 'Сейчас закрыто (откроется в ' + today.from + ':00)';
+    } else {
+      statusText = 'Сейчас закрыто';
+    }
+  } catch (err) {
+    const d = new Date(Date.now() + 4 * 3600000);
+    const hour = d.getUTCHours();
+    const day = d.getUTCDay();
+    const today = sched[day];
+    if (today && today.active && hour >= today.from && hour < today.to) {
+      isOpen = true;
+      statusText = 'Открыто сейчас (до ' + today.to + ':00)';
+    } else if (!today || !today.active) {
+      statusText = 'Сейчас закрыто (выходной)';
+    } else {
+      statusText = 'Сейчас закрыто';
+    }
+  }
+
+  const st = document.getElementById('st'), dot = document.getElementById('dot');
+  if (st && dot) {
+    st.textContent = statusText;
+    dot.classList.toggle('on', isOpen);
+  }
+}
+
+// 5. Управление сессией и защита от перебора (Brute-Force)
+let lockoutTimerInterval = null;
+
+function checkLockout() {
+  const rawLock = localStorage.getItem(DH_LOCKOUT_KEY);
+  const lockoutUntil = Number(rawLock) || 0;
+  const now = Date.now();
+  const banner = document.getElementById('adm-lockout-banner');
+  const timerEl = document.getElementById('adm-lockout-timer');
+  const submitBtn = document.getElementById('adm-login-submit');
+  const uInput = document.getElementById('adm-login-user');
+  const pInput = document.getElementById('adm-login-pass');
+
+  if (lockoutUntil > now) {
+    const remainingSec = Math.ceil((lockoutUntil - now) / 1000);
+    const mins = Math.floor(remainingSec / 60);
+    const secs = remainingSec % 60;
+    if (banner) banner.style.display = 'flex';
+    if (timerEl) timerEl.textContent = 'Повторите попытку через: ' + mins + ':' + (secs < 10 ? '0' : '') + secs;
+    if (submitBtn) submitBtn.disabled = true;
+    if (uInput) uInput.disabled = true;
+    if (pInput) pInput.disabled = true;
+
+    if (!lockoutTimerInterval) {
+      lockoutTimerInterval = setInterval(() => {
+        checkLockout();
+      }, 1000);
+    }
+    return true;
+  } else {
+    if (banner) banner.style.display = 'none';
+    if (submitBtn) submitBtn.disabled = false;
+    if (uInput) uInput.disabled = false;
+    if (pInput) pInput.disabled = false;
+    if (rawLock) {
+      // Блокировка истекла: ОБЯЗАТЕЛЬНО сбрасываем счетчик ошибок, чтобы не блокировать снова после 1 ошибки!
+      localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+      localStorage.removeItem(DH_LOCKOUT_KEY);
+    }
+    if (lockoutTimerInterval) {
+      clearInterval(lockoutTimerInterval);
+      lockoutTimerInterval = null;
+    }
+    return false;
+  }
+}
+
+function isSessionActive() {
+  try {
+    const s = JSON.parse(localStorage.getItem(DH_SESSION_KEY) || 'null');
+    if (s && s.token && s.expires && Date.now() < s.expires) {
+      return true;
+    }
+  } catch (e) {}
+  return false;
+}
+
+function startSession(login) {
+  const session = {
+    login: login,
+    token: generateRandomSalt(),
+    expires: Date.now() + 2 * 3600 * 1000 // 2 часа сессия
+  };
+  localStorage.setItem(DH_SESSION_KEY, JSON.stringify(session));
+}
+
+// 6. Открытие админки
+function openAdmin() {
+  const overlay = document.getElementById('adm-overlay');
+  if (!overlay) return;
+  overlay.hidden = false;
+  // Всегда открываем окно входа с предустановленным логином
+  showLoginCard();
+}
+
+function closeAdminModal() {
+  const overlay = document.getElementById('adm-overlay');
+  if (overlay) overlay.hidden = true;
+  // Сбрасываем сессию, чтобы при следующем открытии СНОВА требовался пароль
+  localStorage.removeItem(DH_SESSION_KEY);
+}
+
+function showSetupCard() {
+  hideAllCards();
+  document.getElementById('adm-setup-card').style.display = 'block';
+}
+
+function showLoginCard() {
+  hideAllCards();
+  const card = document.getElementById('adm-login-card');
+  if (card) card.style.display = 'block';
+
+  // Очищаем логин и пароль при каждом открытии (защита от подглядывания)
+  const uInput = document.getElementById('adm-login-user');
+  const pInput = document.getElementById('adm-login-pass');
+  const errEl = document.getElementById('adm-login-err');
+
+  if (uInput) {
+    uInput.value = '';
+  }
+  if (pInput) {
+    pInput.value = '';
+  }
+  if (errEl) {
+    errEl.style.display = 'none';
+  }
+
+  checkLockout();
+  setTimeout(() => {
+    if (uInput) uInput.focus();
+  }, 100);
+}
+
+function showForgotPassword(e) {
+  if (e) e.preventDefault();
+  hideAllCards();
+  document.getElementById('adm-forgot-card').style.display = 'block';
+  document.getElementById('adm-forgot-step1').style.display = 'block';
+  document.getElementById('adm-forgot-step2').style.display = 'none';
+  document.getElementById('adm-forgot-step3').style.display = 'none';
+}
+
+function showDashboardCard() {
+  hideAllCards();
+  document.getElementById('adm-dashboard-card').style.display = 'block';
+  populateDashboardForm();
+}
+
+function hideAllCards() {
+  ['adm-setup-card', 'adm-login-card', 'adm-forgot-card', 'adm-dashboard-card'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+
+// 7. Обработка первоначальной настройки
+function generateMasterKey() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let p1 = '', p2 = '';
+  for (let i = 0; i < 4; i++) p1 += chars.charAt(Math.floor(Math.random() * chars.length));
+  for (let i = 0; i < 4; i++) p2 += chars.charAt(Math.floor(Math.random() * chars.length));
+  return 'DH-' + p1 + '-' + p2;
+}
+
+async function handleAdminSetup(e) {
+  e.preventDefault();
+  const login = document.getElementById('adm-setup-login').value.trim();
+  const email = document.getElementById('adm-setup-email').value.trim().toLowerCase();
+  const p1 = document.getElementById('adm-setup-pass').value;
+  const p2 = document.getElementById('adm-setup-pass2').value;
+  const errEl = document.getElementById('adm-setup-err');
+
+  if (!email || !email.includes('@') || !email.includes('.')) {
+    errEl.textContent = 'Пожалуйста, укажите корректную почту для восстановления!';
+    errEl.style.display = 'flex';
+    return;
+  }
+  if (p1 !== p2) {
+    errEl.textContent = 'Пароли не совпадают!';
+    errEl.style.display = 'flex';
+    return;
+  }
+  if (p1.length < 6) {
+    errEl.textContent = 'Пароль должен содержать не менее 6 символов!';
+    errEl.style.display = 'flex';
+    return;
+  }
+
+  const salt = generateRandomSalt();
+  const hash = await sha256Hex(p1 + ':' + salt);
+  const masterKey = generateMasterKey();
+
+  const authData = {
+    login: login,
+    email: email,
+    salt: salt,
+    hash: hash,
+    masterKey: masterKey,
+    createdAt: new Date().toISOString()
+  };
+
+  localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+  localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+  localStorage.removeItem(DH_LOCKOUT_KEY);
+  startSession(login);
+  showToast('🛡️ Защита настроена! Ваш резервный мастер-ключ: ' + masterKey);
+  showDashboardCard();
+}
+
+// 8. Обработка логина
+async function handleAdminLogin(e) {
+  e.preventDefault();
+  if (checkLockout()) return;
+
+  const loginInput = document.getElementById('adm-login-user').value.trim().toLowerCase();
+  const passInput = document.getElementById('adm-login-pass').value;
+  const errEl = document.getElementById('adm-login-err');
+
+  let authData = getActiveAuth();
+
+  if (!authData) {
+    showSetupCard();
+    return;
+  }
+
+  // Задержка 500мс против брутфорс-ботов
+  await new Promise(r => setTimeout(r, 500));
+
+  const computedHash = await sha256Hex(passInput + ':' + authData.salt);
+
+  // Сравнение за постоянное время без short-circuit (защита от timing attacks и перебора пользователей)
+  const isUserValid = timingSafeEqual(loginInput, authData.login.toLowerCase());
+  const isPassValid = timingSafeEqual(computedHash, authData.hash);
+
+  if (isUserValid && isPassValid) {
+    // Успешный вход
+    localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+    startSession(authData.login);
+    errEl.style.display = 'none';
+    showToast('Авторизация успешна');
+    showDashboardCard();
+  } else {
+    // Ошибка
+    let fails = parseInt(localStorage.getItem(DH_ATTEMPTS_KEY) || '0', 10) + 1;
+    localStorage.setItem(DH_ATTEMPTS_KEY, String(fails));
+
+    if (fails >= 5) {
+      localStorage.setItem(DH_LOCKOUT_KEY, String(Date.now() + 15 * 60 * 1000));
+      checkLockout();
+    } else {
+      errEl.textContent = 'Неверный логин или пароль. Осталось попыток: ' + (5 - fails) + ' из 5';
+      errEl.style.display = 'flex';
+    }
+  }
+}
+
+// 9. Восстановление пароля по почте и аварийному мастер-ключу
+let activeRecovery = null;
+
+async function handleSendRecoveryCode() {
+  const emailInput = document.getElementById('adm-forgot-email').value.trim().toLowerCase();
+  const errEl = document.getElementById('adm-forgot-err1');
+
+  let authData = getActiveAuth();
+
+  if (!authData || !authData.email) {
+    errEl.textContent = 'Панель еще не была настроена. Пройдите первичную настройку.';
+    errEl.style.display = 'flex';
+    return;
+  }
+
+  const storedEmail = (authData.email || '').trim().toLowerCase();
+  if (emailInput !== storedEmail) {
+    errEl.textContent = 'Указанная почта не совпадает с привязанной к сайту!';
+    errEl.style.display = 'flex';
+    return;
+  }
+
+  errEl.style.display = 'none';
+
+  // Генерируем 6-значный код
+  const code = String(Math.floor(100000 + Math.random() * 900000));
+  activeRecovery = {
+    code: code,
+    email: emailInput,
+    expires: Date.now() + 10 * 60 * 1000
+  };
+
+  // Отправка через FormSubmit AJAX
+  const mailPayload = {
+    _subject: 'Центр Здоровых Волос — Код сброса пароля: ' + code,
+    _template: 'box',
+    _captcha: 'false',
+    'Сайт': 'dr-hair30.ru',
+    'Проверочный_код': code,
+    'Срок_действия': '10 минут',
+    'Сообщение': 'Здравствуйте! Ваш код для смены логина и пароля в панели управления Центром Здоровых Волос: ' + code + '. Действителен 10 минут.'
+  };
+
+  try {
+    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(emailInput), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(mailPayload)
+    }).catch(err => {
+      console.warn('Email dispatch warning:', err);
+    });
+  } catch (ex) {}
+
+  // Шаг 2 БЕЗ ВЫВОДА КОДА НА ЭКРАН!
+  document.getElementById('adm-forgot-step1').style.display = 'none';
+  document.getElementById('adm-forgot-step2').style.display = 'block';
+
+  let noticeHtml = '<span>Код подтверждения отправлен на почту <b>' + escapeHtml(emailInput) + '</b>.<br><small style="color:#64748b;display:block;margin-top:4px">Проверьте папку «Входящие» и «Спам». Код действителен 10 минут.</small></span>';
+
+  if (window.location.protocol === 'file:') {
+    noticeHtml += '<div style="margin-top:8px;font-size:0.75rem;color:#b45309;background:#fef3c7;padding:6px 10px;border-radius:6px">⚠️ При открытии локального файла (file://) браузер блокирует сетевую отправку писем. Вы можете воспользоваться аварийным мастер-ключом!</div>';
+  }
+
+  document.getElementById('adm-otp-notice').innerHTML = noticeHtml;
+}
+
+// Восстановление по аварийному мастер-ключу
+function showMasterKeyRecovery() {
+  document.getElementById('adm-forgot-step1').style.display = 'none';
+  document.getElementById('adm-forgot-step2').style.display = 'none';
+  const mkStep = document.getElementById('adm-forgot-step-master');
+  if (mkStep) mkStep.style.display = 'block';
+  const errEl = document.getElementById('adm-forgot-master-err');
+  if (errEl) errEl.style.display = 'none';
+  const input = document.getElementById('adm-forgot-master-input');
+  if (input) { input.value = ''; input.focus(); }
+}
+
+function handleVerifyMasterKey() {
+  if (checkLockout()) return;
+
+  const entered = (document.getElementById('adm-forgot-master-input')?.value || '').trim().toUpperCase();
+  const errEl = document.getElementById('adm-forgot-master-err');
+
+  let authData = getActiveAuth();
+
+  if (!authData || !authData.masterKey) {
+    if (errEl) {
+      errEl.textContent = 'Мастер-ключ не найден. Завершите первичную настройку панели.';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+
+  // Защита от timing attacks при сравнении мастер-ключа
+  const isMasterKeyValid = timingSafeEqual(entered, authData.masterKey.toUpperCase());
+
+  if (!isMasterKeyValid) {
+    let fails = parseInt(localStorage.getItem(DH_ATTEMPTS_KEY) || '0', 10) + 1;
+    localStorage.setItem(DH_ATTEMPTS_KEY, String(fails));
+    if (fails >= 5) {
+      localStorage.setItem(DH_LOCKOUT_KEY, String(Date.now() + 15 * 60 * 1000));
+      checkLockout();
+      if (errEl) {
+        errEl.textContent = 'Превышено число попыток ввода мастер-ключа. Блокировка на 15 минут.';
+        errEl.style.display = 'flex';
+      }
+    } else {
+      if (errEl) {
+        errEl.textContent = 'Неверный мастер-ключ! Осталось попыток: ' + (5 - fails) + ' из 5';
+        errEl.style.display = 'flex';
+      }
+    }
+    return;
+  }
+
+  // Сброс счетчика ошибок и выпуск криптографического токена восстановления
+  localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+  window.activeRecoveryToken = generateRandomSalt();
+  activeRecovery = null;
+
+  if (errEl) errEl.style.display = 'none';
+  const mkStep = document.getElementById('adm-forgot-step-master');
+  if (mkStep) mkStep.style.display = 'none';
+  document.getElementById('adm-forgot-step3').style.display = 'block';
+
+  const newLoginInput = document.getElementById('adm-forgot-new-login');
+  if (newLoginInput && authData.login) newLoginInput.value = authData.login;
+  const p1 = document.getElementById('adm-new-pass');
+  const p2 = document.getElementById('adm-new-pass2');
+  if (p1) p1.value = '';
+  if (p2) p2.value = '';
+  showToast('Мастер-ключ подтвержден. Установите новые данные.');
+}
+
+function handleBackToEmailRecovery() {
+  const mkStep = document.getElementById('adm-forgot-step-master');
+  if (mkStep) mkStep.style.display = 'none';
+  document.getElementById('adm-forgot-step1').style.display = 'block';
+}
+
+function handleVerifyOtp() {
+  if (checkLockout()) return;
+
+  const entered = (document.getElementById('adm-forgot-otp')?.value || '').trim();
+  const errEl = document.getElementById('adm-forgot-err2');
+
+  if (!activeRecovery || Date.now() > activeRecovery.expires) {
+    if (errEl) {
+      errEl.textContent = 'Срок действия кода истёк. Запросите код заново.';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+
+  // Защита от timing attacks при проверке 6-значного кода
+  const isOtpValid = timingSafeEqual(entered, activeRecovery.code);
+
+  if (!isOtpValid) {
+    let fails = parseInt(localStorage.getItem(DH_ATTEMPTS_KEY) || '0', 10) + 1;
+    localStorage.setItem(DH_ATTEMPTS_KEY, String(fails));
+    if (fails >= 5) {
+      localStorage.setItem(DH_LOCKOUT_KEY, String(Date.now() + 15 * 60 * 1000));
+      activeRecovery = null; // Немедленно аннулируем активный код при блокировке
+      checkLockout();
+      if (errEl) {
+        errEl.textContent = 'Превышено число неверных попыток ввода кода. Блокировка на 15 минут.';
+        errEl.style.display = 'flex';
+      }
+    } else {
+      if (errEl) {
+        errEl.textContent = 'Неверный проверочный код! Осталось попыток: ' + (5 - fails) + ' из 5';
+        errEl.style.display = 'flex';
+      }
+    }
+    return;
+  }
+
+  // Успех: аннулируем одноразовый OTP код немедленно (Single-Use OTP)
+  // и выпускаем одноразовый сессионный токен для сохранения нового пароля
+  localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+  window.activeRecoveryToken = generateRandomSalt();
+  activeRecovery = null;
+
+  if (errEl) errEl.style.display = 'none';
+  document.getElementById('adm-forgot-step2').style.display = 'none';
+  document.getElementById('adm-forgot-step3').style.display = 'block';
+
+  let authData = getActiveAuth();
+  const newLoginInput = document.getElementById('adm-forgot-new-login');
+  if (newLoginInput && authData && authData.login) {
+    newLoginInput.value = authData.login;
+  }
+  const p1 = document.getElementById('adm-new-pass');
+  const p2 = document.getElementById('adm-new-pass2');
+  if (p1) p1.value = '';
+  if (p2) p2.value = '';
+}
+
+async function handleSaveNewPassword() {
+  const errEl = document.getElementById('adm-forgot-err3');
+
+  // Проверка криптографического токена восстановления (защита от прямого вызова функции без кода)
+  if (!window.activeRecoveryToken) {
+    if (errEl) {
+      errEl.textContent = 'Ошибка сессии восстановления. Пройдите проверку кода или мастер-ключа заново.';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+
+  const newLogin = (document.getElementById('adm-forgot-new-login')?.value || '').trim();
+  const p1 = document.getElementById('adm-new-pass')?.value || '';
+  const p2 = document.getElementById('adm-new-pass2')?.value || '';
+
+  if (!newLogin) {
+    if (errEl) {
+      errEl.textContent = 'Пожалуйста, укажите логин!';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+  if (p1 !== p2) {
+    if (errEl) {
+      errEl.textContent = 'Пароли не совпадают!';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+  if (p1.length < 6) {
+    if (errEl) {
+      errEl.textContent = 'Пароль должен содержать минимум 6 символов!';
+      errEl.style.display = 'flex';
+    }
+    return;
+  }
+
+  let authData = Object.assign({}, getActiveAuth());
+  const newSalt = generateRandomSalt();
+  const newHash = await sha256Hex(p1 + ':' + newSalt);
+
+  authData.login = newLogin;
+  authData.salt = newSalt;
+  authData.hash = newHash;
+  localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+  localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+  localStorage.removeItem(DH_LOCKOUT_KEY);
+
+  window.activeRecoveryToken = null;
+  activeRecovery = null;
+
+  activeRecovery = null;
+  showToast('Логин и пароль успешно обновлены');
+  showLoginCard();
+}
+
+// 10. Dashboard (Заполнение полей и сохранение)
+function switchAdmTab(tabId, btn) {
+  document.querySelectorAll('.adm-tab-content').forEach(c => c.style.display = 'none');
+  document.querySelectorAll('.adm-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).style.display = 'block';
+  btn.classList.add('active');
+}
+
+
+// ===== СИСТЕМА УПРАВЛЕНИЯ УСЛУГАМИ И ЦЕНАМИ =====
+
+function renderCardMedia(s) {
+  const imgs = s.images || [];
+  const titleEsc = escapeHtml(s.title || s.name || '');
+  if (!imgs.length) {
+    return '<div class="card-media"><div class="ph"><span>' + titleEsc + '</span></div></div>';
+  }
+  if (imgs.length === 1) {
+    const safeSrc = sanitizeImageUrl(imgs[0]);
+    return '<div class="card-media"><div class="im" style="height:100%"><img src="' + safeSrc + '" alt="' + titleEsc + '" loading="lazy" style="object-fit:cover" onerror="ph(this)"></div></div>';
+  }
+  const gc = s.gridClass || (imgs.length >= 4 ? 'grid-4' : imgs.length === 3 ? 'grid-3' : 'grid-2');
+  const imHtml = imgs.map((img, i) => {
+    const safeSrc = sanitizeImageUrl(img);
+    return '<div class="im"><img src="' + safeSrc + '" alt="' + titleEsc + ' ' + (i + 1) + '" loading="lazy" onerror="ph(this)"></div>';
+  }).join('');
+  return '<div class="card-media ' + gc + '">' + imHtml + '</div>';
+}
+
+function renderServicesCatalog(servicesList) {
+  const container = document.getElementById('services-container');
+  if (!container) return;
+
+  const visibleServices = (servicesList || []).filter(s => s.visible !== false);
+  let html = '';
+
+  visibleServices.forEach(s => {
+    const isChosen = window._selectedServices ? window._selectedServices.has(s.name) : false;
+    const nameEsc = escapeHtml(s.name || '');
+    const titleEsc = escapeHtml(s.title || s.name || '');
+    const idEsc = escapeHtml(s.id || '');
+    const descEsc = escapeHtml(s.desc || '');
+    const priceText = s.price && s.price.trim() ? escapeHtml(s.price.trim()) : '';
+    const priceBadge = priceText
+      ? '<span class="svc-price font-bold text-sm" style="color:var(--em-d);background:var(--soft);padding:4px 8px;border-radius:6px;border:1px solid rgba(138,63,252,0.15)">' + priceText + '</span>'
+      : '<span></span>';
+
+    html += `
+      <article class="card svc ${isChosen ? 'sel' : ''}" data-s="${nameEsc}" data-id="${idEsc}">
+        ${renderCardMedia(s)}
+        <h3 class="fh text-lg font-bold">${titleEsc}</h3>
+        <p class="mt-1 mb-4 text-sm mu">${descEsc}</p>
+        <div class="flex items-center justify-between mt-auto pt-2 gap-2">
+          ${priceBadge}
+          <button type="button" class="btn pick" aria-pressed="${isChosen}">${isChosen ? '✓ Выбрано' : 'Выбрать услугу'}</button>
+        </div>
+      </article>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  // Обновляем состояние выбора
+  if (typeof window.syncServicesSelection === 'function') {
+    window.syncServicesSelection();
+  }
+}
+
+// Переменная для редактирования в админке
+let admServicesEditing = [];
+
+function populateAdminServicesList() {
+  const cfg = getActiveConfig();
+  admServicesEditing = JSON.parse(JSON.stringify(cfg.services || DEFAULT_DH_CONFIG.services));
+  renderAdminServicesUI();
+}
+
+// Сжатие фото для легкости и сохранения в браузерном хранилище
+function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.82) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        try {
+          let w = img.width;
+          let h = img.height;
+          const scale = Math.min(1, maxWidth / w, maxHeight / h);
+          w = Math.round(w * scale);
+          h = Math.round(h * scale);
+
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Canvas 2D context недоступен');
+
+          // Заполняем белым фоном на случай прозрачных PNG
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve(dataUrl);
+        } catch (err) {
+          reject(err);
+        }
+      };
+      img.onerror = () => reject(new Error('Не удалось открыть изображение'));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error('Не удалось прочитать файл'));
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleUploadServicePhoto(serviceId, input) {
+  if (!input.files || !input.files[0]) return;
+  const file = input.files[0];
+  if (!file.type || !file.type.startsWith('image/')) {
+    alert('Пожалуйста, выберите файл изображения (JPEG, PNG, WebP).');
+    input.value = '';
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Размер файла превышает допустимый лимит (максимум 5 МБ).');
+    input.value = '';
+    return;
+  }
+  try {
+    showToast('⏳ Сжатие и добавление фото...');
+    const base64Data = await compressImage(file);
+    const service = admServicesEditing.find(s => s.id === serviceId);
+    if (!service) return;
+    if (!service.images) service.images = [];
+    service.images.push(base64Data);
+    service.gridClass = service.images.length >= 4 ? 'grid-4' : service.images.length === 3 ? 'grid-3' : service.images.length === 2 ? 'grid-2' : 'grid-1';
+    renderAdminServicesUI();
+    showToast('Фото успешно добавлено');
+  } catch (err) {
+    alert('Ошибка при загрузке фото: ' + err.message);
+  } finally {
+    input.value = '';
+  }
+}
+
+function handleAddPhotoByUrl(serviceId) {
+  const url = prompt('Введите путь или ссылку на фото (например: images/2.jpg или https://...):');
+  if (!url || !url.trim()) return;
+  const safeUrl = sanitizeImageUrl(url);
+  if (!safeUrl) {
+    alert('Недопустимый формат ссылки. Разрешены ссылки https:// или локальные пути images/...');
+    return;
+  }
+  const service = admServicesEditing.find(s => s.id === serviceId);
+  if (!service) return;
+  if (!service.images) service.images = [];
+  service.images.push(safeUrl);
+  service.gridClass = service.images.length >= 4 ? 'grid-4' : service.images.length === 3 ? 'grid-3' : service.images.length === 2 ? 'grid-2' : 'grid-1';
+  renderAdminServicesUI();
+  showToast('Фото добавлено');
+}
+
+function handleRemoveServicePhoto(serviceId, imgIndex) {
+  const service = admServicesEditing.find(s => s.id === serviceId);
+  if (!service || !service.images) return;
+  service.images.splice(imgIndex, 1);
+  service.gridClass = service.images.length >= 4 ? 'grid-4' : service.images.length === 3 ? 'grid-3' : service.images.length === 2 ? 'grid-2' : 'grid-1';
+  renderAdminServicesUI();
+  showToast('Фото удалено');
+}
+
+function renderAdminServicesUI() {
+  const listEl = document.getElementById('adm-services-list');
+  if (!listEl) return;
+
+  if (!admServicesEditing.length) {
+    listEl.innerHTML = '<div class="adm-alert info">Список услуг пуст. Нажмите «+ Добавить услугу».</div>';
+    return;
+  }
+
+  let html = '';
+  admServicesEditing.forEach((s, idx) => {
+    const imgs = s.images || [];
+    const safeId = escapeHtml(String(s.id || '').replace(/['"\\]/g, ''));
+    const safeTitle = escapeHtml(s.title || s.name || '');
+    const safePrice = escapeHtml(s.price || '');
+    const safeDesc = escapeHtml(s.desc || '');
+
+    const photosHtml = imgs.map((img, imgIdx) => {
+      const safeSrc = sanitizeImageUrl(img);
+      return `
+        <div style="position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1.5px solid #d1d5db;background:#f3f4f6;flex-shrink:0">
+          <img src="${safeSrc}" style="width:100%;height:100%;object-fit:cover" onerror="ph(this)">
+          <button type="button" onclick="handleRemoveServicePhoto('${safeId}', ${imgIdx})" style="position:absolute;top:2px;right:2px;background:rgba(220,38,38,0.9);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,0.3)" title="Удалить фото">✕</button>
+        </div>
+      `;
+    }).join('');
+
+    html += `
+      <div class="adm-service-card" style="background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-weight:700;font-size:0.8rem;background:#8A3FFC;color:#fff;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center">${idx + 1}</span>
+            <span style="font-weight:700;font-size:0.9rem;color:#111827">${safeTitle || 'Новая услуга'}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', -1)" style="padding:4px 7px;font-size:0.75rem" title="Поднять выше"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', 1)" style="padding:4px 7px;font-size:0.75rem" title="Опустить ниже"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <button type="button" class="adm-btn-secondary" onclick="handleDeleteService('${safeId}')" style="padding:4px 7px;font-size:0.75rem;color:#dc2626" title="Удалить услугу"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 140px;gap:10px">
+          <div>
+            <label style="font-size:0.75rem;font-weight:600;color:#4b5563;margin-bottom:3px;display:block">Заголовок услуги</label>
+            <input type="text" class="adm-input" value="${safeTitle}" onchange="updateAdmServiceField('${safeId}', 'title', this.value)" placeholder="Название услуги">
+          </div>
+          <div>
+            <label style="font-size:0.75rem;font-weight:600;color:#4b5563;margin-bottom:3px;display:block">Цена (для бейджа)</label>
+            <input type="text" class="adm-input" value="${safePrice}" onchange="updateAdmServiceField('${safeId}', 'price', this.value)" placeholder="от 3 000 ₽">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:0.75rem;font-weight:600;color:#4b5563;margin-bottom:3px;display:block">Описание процедуры</label>
+          <textarea class="adm-textarea" rows="2" onchange="updateAdmServiceField('${safeId}', 'desc', this.value)" placeholder="Краткое описание процедуры и результата">${safeDesc}</textarea>
+        </div>
+
+        <!-- Блок добавления и управления фото -->
+        <div style="background:#ffffff;border:1px solid #e5e7eb;border-radius:8px;padding:10px">
+          <label style="font-size:0.75rem;font-weight:600;color:#4b5563;margin-bottom:6px;display:block">
+            Фотографии процедуры (${imgs.length} из 4)
+          </label>
+          
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px">
+            ${photosHtml}
+            ${imgs.length === 0 ? '<div style="font-size:0.75rem;color:#9ca3af;font-style:italic">Фото пока нет (будет показана аккуратная заглушка)</div>' : ''}
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <label class="adm-btn-secondary" style="cursor:pointer;padding:4px 10px;font-size:0.75rem;background:#f3e8ff;color:#7c3aed;border-color:#ddd6fe;margin:0;display:inline-flex;align-items:center;gap:4px">
+              <svg class="adm-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>Загрузить фото</span>
+              <input type="file" accept="image/*" onchange="handleUploadServicePhoto('${safeId}', this)" style="display:none">
+            </label>
+            <button type="button" class="adm-btn-secondary" onclick="handleAddPhotoByUrl('${safeId}')" style="padding:4px 10px;font-size:0.75rem">
+              По ссылке
+            </button>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:6px;border-top:1px dashed #e5e7eb">
+          <label style="display:flex;align-items:center;gap:6px;font-size:0.8rem;cursor:pointer;color:#374151">
+            <input type="checkbox" ${s.visible !== false ? 'checked' : ''} onchange="updateAdmServiceField('${safeId}', 'visible', this.checked)" style="accent-color:#8A3FFC">
+            <span>Отображать в каталоге на сайте</span>
+          </label>
+          <small style="font-size:0.7rem;color:#9ca3af">ID: ${safeId}</small>
+        </div>
+      </div>
+    `;
+  });
+
+  listEl.innerHTML = html;
+}
+
+function updateAdmServiceField(id, field, value) {
+  const item = admServicesEditing.find(s => s.id === id);
+  if (!item) return;
+  item[field] = value;
+  if (field === 'title') {
+    item.name = value; // синхронизируем имя для формы заявки
+  }
+}
+
+function handleAddNewService() {
+  const newId = 's_' + Date.now();
+  admServicesEditing.unshift({
+    id: newId,
+    name: 'Новая услуга',
+    title: 'Новая услуга',
+    desc: 'Описание новой услуги и эффекта от процедуры.',
+    price: 'от 2 000 ₽',
+    images: [],
+    gridClass: 'grid-1',
+    visible: true
+  });
+  renderAdminServicesUI();
+}
+
+function handleDeleteService(id) {
+  if (!confirm('Удалить эту услугу из каталога?')) return;
+  admServicesEditing = admServicesEditing.filter(s => s.id !== id);
+  renderAdminServicesUI();
+}
+
+function handleMoveService(id, dir) {
+  const idx = admServicesEditing.findIndex(s => s.id === id);
+  if (idx === -1) return;
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx >= admServicesEditing.length) return;
+  const temp = admServicesEditing[idx];
+  admServicesEditing[idx] = admServicesEditing[newIdx];
+  admServicesEditing[newIdx] = temp;
+  renderAdminServicesUI();
+}
+
+function populateDashboardForm() {
+  populateAdminServicesList();
+  const cfg = getActiveConfig();
+
+  // График кратко и подробно
+  document.getElementById('adm-cfg-hours-short').value = cfg.hoursShort || DEFAULT_DH_CONFIG.hoursShort;
+  document.getElementById('adm-cfg-hours-detail').value = cfg.hoursDetail || DEFAULT_DH_CONFIG.hoursDetail;
+
+  // Отрисовка дней недели
+  const daysContainer = document.getElementById('adm-schedule-days');
+  const sched = cfg.schedule || DEFAULT_DH_CONFIG.schedule;
+  let daysHtml = '';
+
+  // Отображаем с Понедельника (1) по Воскресенье (0)
+  const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+  dayOrder.forEach(d => {
+    const dayData = sched[d] || { active: false, from: 11, to: 20 };
+    daysHtml += `
+      <div class="adm-day-row">
+        <label>
+          <input type="checkbox" id="sched-active-${d}" ${dayData.active ? 'checked' : ''} style="width:16px;height:16px;accent-color:#8A3FFC">
+          <span>${DAY_NAMES[d]}</span>
+        </label>
+        <div class="adm-day-hours">
+          <span>с</span>
+          <select id="sched-from-${d}">
+            ${[8,9,10,11,12,13,14].map(h => `<option value="${h}" ${dayData.from === h ? 'selected' : ''}>${h}:00</option>`).join('')}
+          </select>
+          <span>до</span>
+          <select id="sched-to-${d}">
+            ${[16,17,18,19,20,21,22].map(h => `<option value="${h}" ${dayData.to === h ? 'selected' : ''}>${h}:00</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    `;
+  });
+  daysContainer.innerHTML = daysHtml;
+
+  // Баннер
+  const ann = cfg.announcement || DEFAULT_DH_CONFIG.announcement;
+  document.getElementById('adm-cfg-ann-text').value = ann.text || '';
+  document.getElementById('adm-cfg-ann-style').value = ann.style || 'purple';
+
+  // Контакты
+  const c = cfg.contacts || DEFAULT_DH_CONFIG.contacts;
+  document.getElementById('adm-cfg-phone-text').value = c.phoneText || '';
+  document.getElementById('adm-cfg-phone-digits').value = c.phoneDigits || '';
+  document.getElementById('adm-cfg-tg-order').value = c.telegram || '';
+  document.getElementById('adm-cfg-tg-channel').value = c.telegramChannel || '';
+  document.getElementById('adm-cfg-max-url').value = c.maxUrl || '';
+
+  // Безопасность
+  let authData = Object.assign({}, getActiveAuth());
+  
+  // Если мастер-ключ не был создан ранее, создаем его сейчас
+  if (!authData.masterKey && authData.hash) {
+    authData.masterKey = generateMasterKey();
+    localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+  }
+
+  document.getElementById('adm-sec-login').value = authData.login || 'viktoria';
+  document.getElementById('adm-sec-email').value = authData.email || '';
+  const mkInput = document.getElementById('adm-sec-master-key');
+  if (mkInput) mkInput.value = authData.masterKey || 'DH-KEY-NOT-SET';
+  document.getElementById('adm-sec-newpass').value = '';
+  const p2Input = document.getElementById('adm-sec-newpass2');
+  if (p2Input) p2Input.value = '';
+  const emailNotice = document.getElementById('adm-sec-email-notice');
+  if (emailNotice) emailNotice.style.display = 'none';
+  const secMsg = document.getElementById('adm-sec-msg');
+  if (secMsg) secMsg.style.display = 'none';
+}
+
+// Функция мгновенного обновления привязанной почты ("уже в системе")
+function handleUpdateBoundEmail() {
+  const emailInput = document.getElementById('adm-sec-email');
+  const noticeEl = document.getElementById('adm-sec-email-notice');
+  const newEmail = (emailInput?.value || '').trim().toLowerCase();
+
+  if (!newEmail || !newEmail.includes('@') || !newEmail.includes('.')) {
+    if (noticeEl) {
+      noticeEl.className = 'adm-alert danger';
+      noticeEl.innerHTML = '<span>Пожалуйста, укажите корректный адрес электронной почты!</span>';
+      noticeEl.style.display = 'flex';
+    }
+    return;
+  }
+
+  let authData = Object.assign({}, getActiveAuth());
+
+  authData.email = newEmail;
+  localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+
+  if (noticeEl) {
+    noticeEl.className = 'adm-alert success';
+    noticeEl.innerHTML = '<span>✅ Привязанная почта успешно обновлена: <b>' + escapeHtml(newEmail) + '</b></span>';
+    noticeEl.style.display = 'flex';
+  }
+  showToast('Привязанная почта обновлена: ' + newEmail);
+}
+
+// Копирование мастер-ключа в буфер обмена
+function handleCopyMasterKey() {
+  const mkInput = document.getElementById('adm-sec-master-key');
+  if (!mkInput || !mkInput.value) return;
+  navigator.clipboard.writeText(mkInput.value).then(() => {
+    showToast('Мастер-ключ скопирован в буфер обмена');
+  }).catch(() => {
+    mkInput.select();
+    showToast('📋 Скопируйте выделенный ключ вручную (Ctrl+C)');
+  });
+}
+
+async function handleSaveAdminConfig() {
+  const newSchedule = {};
+  [0, 1, 2, 3, 4, 5, 6].forEach(d => {
+    const act = document.getElementById('sched-active-' + d)?.checked || false;
+    const fr = parseInt(document.getElementById('sched-from-' + d)?.value || '11', 10);
+    const to = parseInt(document.getElementById('sched-to-' + d)?.value || '20', 10);
+    newSchedule[d] = { active: act, from: fr, to: to };
+  });
+
+  const updatedConfig = {
+    services: admServicesEditing,
+    hoursShort: document.getElementById('adm-cfg-hours-short').value.trim(),
+    hoursDetail: document.getElementById('adm-cfg-hours-detail').value.trim(),
+    schedule: newSchedule,
+    announcement: {
+      enabled: Boolean(document.getElementById('adm-cfg-ann-text').value.trim()),
+      text: document.getElementById('adm-cfg-ann-text').value.trim(),
+      style: document.getElementById('adm-cfg-ann-style').value
+    },
+    contacts: {
+      phoneText: document.getElementById('adm-cfg-phone-text').value.trim(),
+      phoneDigits: document.getElementById('adm-cfg-phone-digits').value.trim().replace(/\D/g, ''),
+      telegram: document.getElementById('adm-cfg-tg-order').value.trim().replace(/^@/, ''),
+      telegramChannel: document.getElementById('adm-cfg-tg-channel').value.trim().replace(/^@/, ''),
+      maxUrl: document.getElementById('adm-cfg-max-url').value.trim()
+    }
+  };
+
+  // Сохраняем в память
+  saveActiveConfig(updatedConfig);
+
+  // Обновляем настройки безопасности (если менялись)
+  const newLogin = document.getElementById('adm-sec-login').value.trim();
+  const newEmail = document.getElementById('adm-sec-email').value.trim().toLowerCase();
+  const newPass = document.getElementById('adm-sec-newpass').value;
+  const newPass2 = document.getElementById('adm-sec-newpass2')?.value || '';
+
+  let authData = Object.assign({}, getActiveAuth());
+
+  if (newLogin) authData.login = newLogin;
+  if (newEmail && newEmail.includes('@')) authData.email = newEmail;
+  if (newPass) {
+    if (newPass.length < 6) {
+      showToast('Пароль должен быть не менее 6 символов!');
+      return;
+    }
+    if (newPass2 && newPass !== newPass2) {
+      showToast('Введенные пароли не совпадают!');
+      return;
+    }
+    const salt = generateRandomSalt();
+    authData.salt = salt;
+    authData.hash = await sha256Hex(newPass + ':' + salt);
+  }
+  localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+
+  // Применяем изменения к живому сайту прямо сейчас!
+  applySiteConfig(updatedConfig);
+
+  showToast('Все изменения сохранены и применены');
+}
+
+function handleAdminLogout() {
+  localStorage.removeItem(DH_SESSION_KEY);
+  closeAdminModal();
+  showToast('Вы вышли из панели управления');
+}
+
+// 11. Экспорт обновленного index.html со всеми услугами, фото и графиком
+function handleExportHtml() {
+  const cfg = getActiveConfig();
+  
+  // Клонируем документ и очищаем временные состояния админ-модалки
+  let fullHtml = document.documentElement.outerHTML;
+
+  // Сериализуем активный конфиг
+  const serializedConfig = JSON.stringify(cfg, null, 2);
+
+  // Заменяем блок DEFAULT_DH_CONFIG в теле скрипта, чтобы на GitHub Pages у всех посетителей открывались актуальные данные!
+  const configRegex = /const\s+DEFAULT_DH_CONFIG\s*=\s*\{[\s\S]*?\};\s*\/\/\s*2\.\s*Хранилище/;
+  const replacementStr = 'const DEFAULT_DH_CONFIG = ' + serializedConfig + ';\n\n// 2. Хранилище';
+
+  if (configRegex.test(fullHtml)) {
+    fullHtml = fullHtml.replace(configRegex, replacementStr);
+  }
+
+  // Очищаем оверлей модалки в выгруженном файле
+  fullHtml = fullHtml.replace(/<div id="adm-overlay" class="adm-modal-overlay"[^>]*>/, '<div id="adm-overlay" class="adm-modal-overlay" hidden role="dialog" aria-modal="true">');
+
+  const blob = new Blob(['<!DOCTYPE html>\n' + fullHtml], { type: 'text/html;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  showToast('Файл index.html скачан');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('adm-toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.display = 'flex';
+  setTimeout(() => { t.style.display = 'none'; }, 3500);
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  // Применяем сохраненные настройки
+  applySiteConfig();
+
+  // Привязка кнопки в футере
+  const openBtn = document.getElementById('open-admin-btn');
+  if (openBtn) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openAdmin();
+    });
+  }
+
+  // Горячая клавиша: Ctrl + Shift + A
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'Ф' || e.key === 'ф')) {
+      e.preventDefault();
+      openAdmin();
+    }
+  });
+
+  // Если в адресной строке #admin
+  if (window.location.hash === '#admin') {
+    openAdmin();
+  }
+});
+
 </script>
 </head>
 
@@ -373,6 +2194,12 @@ document.addEventListener('DOMContentLoaded', () => {
   Астрахань, ул. Котовского, 8а, офис 5 · <span data-hrs></span>
 </div>
 
+
+<!-- Верхний баннер срочных объявлений (управляется из админки) -->
+<div id="announcement-banner" class="announcement-banner" style="display:flex">
+  <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+  <span id="announcement-text">Центр Здоровых Волос в Астрахани — профессиональная диагностика кожи головы на трихоскопе и спа-программы. Запись открыта.</span>
+</div>
 <header class="sticky top-0 z-30 bg-white/95 backdrop-blur" style="border-bottom:1px solid var(--line)">
   <div class="max-w-5xl mx-auto px-3 py-2 flex items-center gap-3">
     <div class="logo w-11 h-11 shrink-0"><img src="images/1.jpg" alt="Логотип Центра Здоровых Волос" onerror="ph(this)"></div>
@@ -408,7 +2235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <section id="services" class="sec">
   <h2 class="h2">Наши услуги</h2>
   <p class="mu mt-2 mb-8">Нажмите на любую услугу, чтобы добавить её в онлайн-запись. Можно выбрать сразу несколько процедур.</p>
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div id="services-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
     <!-- 1. Диагностика кожи головы и волос на трихоскопе (2 фото: 2.jpg, 3.jpg) -->
     <article class="card svc" data-s="Диагностика кожи головы и волос на трихоскопе">
@@ -708,7 +2535,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="font-semibold">г. Астрахань, Кировский район</p>
       <p class="mu"><a href="https://2gis.ru/astrakhan/geo/1126535562026980" target="_blank" rel="noopener" class="underline">ул. Котовского, 8а</a>, 5 офис, 2 этаж, 414045</p>
       <p class="mt-3 font-semibold">Часы работы</p>
-      <p class="mu">Понедельник: 11:00–20:00<br>Вторник – суббота: выходной<br>Воскресенье: 11:00–20:00</p>
+      <p class="mu" id="contacts-hours-detail">Понедельник: 11:00–20:00<br>Вторник – суббота: выходной<br>Воскресенье: 11:00–20:00</p>
       <p class="mt-3"><a data-l="tel" data-ph class="font-semibold underline"></a></p>
       
       <div class="mt-3 flex flex-wrap gap-2">
@@ -748,7 +2575,15 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
   <div class="max-w-5xl mx-auto px-4 pb-6 pt-2 flex justify-between items-center text-xs" style="color:#9a93a0">
     <div>© Центр Здоровых Волос, Астрахань</div>
-    <div style="font-size:0.6rem;color:rgba(255,255,255,0.18);user-select:none;letter-spacing:0.03em;cursor:default">by @m0rf1nov</div>
+    
+    <div class="flex items-center gap-3">
+      <a href="#admin" id="open-admin-btn" style="color:rgba(255,255,255,0.45);text-decoration:none;display:inline-flex;align-items:center;gap:5px;font-size:0.75rem;padding:4px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);transition:all 0.2s" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.4)'" onmouseout="this.style.color='rgba(255,255,255,0.45)';this.style.borderColor='rgba(255,255,255,0.12)'">
+        <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        <span>Управление сайтом</span>
+      </a>
+      <div style="font-size:0.6rem;color:rgba(255,255,255,0.18);user-select:none;letter-spacing:0.03em;cursor:default">by @m0rf1nov</div>
+    </div>
+
   </div>
 </footer>
 
@@ -775,6 +2610,395 @@ document.addEventListener('DOMContentLoaded', () => {
       <button id="x" type="button" data-x class="btn s" style="background:var(--dark)">Выход</button>
     </div>
   </div>
+</div>
+
+
+<!-- ==================== МОДАЛЬНЫЕ ОКНА АДМИН-ПАНЕЛИ ==================== -->
+<div id="adm-overlay" class="adm-modal-overlay" hidden role="dialog" aria-modal="true">
+
+  <!-- 1. ОКНО ПЕРВИЧНОЙ НАСТРОЙКИ (SETUP WIZARD) -->
+  <div id="adm-setup-card" class="adm-card" style="display:none">
+    <div class="adm-header">
+      <h2>Настройка доступа</h2>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+    </div>
+    <div class="adm-body">
+      <div class="adm-alert info">
+        <span><b>Управление доступом</b> Придумайте логин и пароль для входа в управление графиком и контактами Центра Здоровых Волос.</span>
+      </div>
+      <form id="adm-setup-form" onsubmit="handleAdminSetup(event)">
+        <div class="adm-form-group">
+          <label>Логин для входа</label>
+          <input type="text" id="adm-setup-login" class="adm-input" value="" placeholder="Логин администратора" required autocomplete="username">
+          <div class="adm-hint">Укажите ваш логин для доступа к панели.</div>
+        </div>
+        <div class="adm-form-group">
+          <label>Привязанная почта (для смены/восстановления пароля)</label>
+          <input type="email" id="adm-setup-email" class="adm-input" placeholder="например, viktoria@mail.ru" required autocomplete="email">
+          <div class="adm-hint">На эту почту будет приходить проверочный код, если вы забудете пароль.</div>
+        </div>
+        <div class="adm-form-group">
+          <label>Придумайте пароль (не менее 6 символов)</label>
+          <input type="password" id="adm-setup-pass" class="adm-input" placeholder="••••••••" required minlength="6" autocomplete="new-password">
+        </div>
+        <div class="adm-form-group">
+          <label>Повторите пароль</label>
+          <input type="password" id="adm-setup-pass2" class="adm-input" placeholder="••••••••" required minlength="6" autocomplete="new-password">
+        </div>
+        <div id="adm-setup-err" class="adm-alert danger" style="display:none"></div>
+        <button type="submit" class="adm-btn-primary" style="margin-top:10px">
+          Активировать доступ и войти
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. ОКНО АВТОРИЗАЦИИ (LOGIN) -->
+  <div id="adm-login-card" class="adm-card" style="display:none">
+    <div class="adm-header">
+      <h2>Вход для администратора</h2>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+    </div>
+    <div class="adm-body">
+      <div id="adm-lockout-banner" class="adm-alert danger" style="display:none">
+        <div>
+          <b>Вход временно заблокирован в целях безопасности</b>
+          <div id="adm-lockout-timer" style="margin-top:4px">Повторите попытку через: 15:00</div>
+        </div>
+      </div>
+
+      <form id="adm-login-form" onsubmit="handleAdminLogin(event)">
+        <div class="adm-form-group">
+          <label>Логин</label>
+          <input type="text" id="adm-login-user" class="adm-input" value="" placeholder="Логин администратора" required autocomplete="username">
+        </div>
+        <div class="adm-form-group">
+          <label>Пароль</label>
+          <input type="password" id="adm-login-pass" class="adm-input" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <div id="adm-login-err" class="adm-alert danger" style="display:none"></div>
+        <button type="submit" id="adm-login-submit" class="adm-btn-primary" style="margin-top:10px">
+          Войти в управление
+        </button>
+      </form>
+
+      <div style="margin-top:16px;text-align:center">
+        <a href="#forgot" onclick="showForgotPassword(event)" style="font-size:0.82rem;color:#8A3FFC;text-decoration:underline;cursor:pointer">
+          Забыли пароль? Восстановить через почту →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ОКНО ВОССТАНОВЛЕНИЯ ПАРОЛЯ (FORGOT PASSWORD) -->
+  <div id="adm-forgot-card" class="adm-card" style="display:none">
+    <div class="adm-header">
+      <h2>Восстановление доступа</h2>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+    </div>
+    <div class="adm-body">
+      <!-- Шаг 1: ввод почты -->
+      <div id="adm-forgot-step1">
+        <p class="adm-hint" style="margin-bottom:14px">
+          Введите почту, привязанную к панели управления. Мы отправим на неё 6-значный защитный код для смены пароля.
+        </p>
+        <div class="adm-form-group">
+          <label>Привязанная почта</label>
+          <input type="email" id="adm-forgot-email" class="adm-input" placeholder="ваша-почта@mail.ru" required>
+        </div>
+        <div id="adm-forgot-err1" class="adm-alert danger" style="display:none"></div>
+        <div class="flex gap-2" style="margin-top:14px">
+          <button type="button" class="adm-btn-primary" onclick="handleSendRecoveryCode()">Отправить код на почту</button>
+          <button type="button" class="adm-btn-secondary" onclick="showLoginCard()">Назад</button>
+        </div>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px dashed #e2e8f0;text-align:center">
+          <a href="#master-key" onclick="showMasterKeyRecovery()" style="font-size:0.82rem;color:#059669;font-weight:600;text-decoration:underline;cursor:pointer">
+            Не приходит код или нет доступа к почте? Войти по мастер-ключу →
+          </a>
+        </div>
+      </div>
+
+      <!-- Альтернативный шаг: вход по аварийному мастер-ключу -->
+      <div id="adm-forgot-step-master" style="display:none">
+        <div class="adm-alert info" style="margin-bottom:12px">
+          <span>Введите аварийный мастер-ключ (формат: <b>DH-XXXX-XXXX</b>), полученный при настройке:</span>
+        </div>
+        <div class="adm-form-group">
+          <label>Аварийный мастер-ключ</label>
+          <input type="text" id="adm-forgot-master-input" class="adm-input" placeholder="DH-XXXX-XXXX" style="letter-spacing:0.1em;font-family:monospace;font-weight:700">
+        </div>
+        <div id="adm-forgot-master-err" class="adm-alert danger" style="display:none"></div>
+        <div class="flex gap-2" style="margin-top:14px">
+          <button type="button" class="adm-btn-primary" onclick="handleVerifyMasterKey()">Войти по мастер-ключу</button>
+          <button type="button" class="adm-btn-secondary" onclick="handleBackToEmailRecovery()">← Назад к почте</button>
+        </div>
+      </div>
+
+      <!-- Шаг 2: ввод кода -->
+      <div id="adm-forgot-step2" style="display:none">
+        <div class="adm-alert success" id="adm-otp-notice">
+          <span>Код отправлен на почту! Проверьте входящие или папку «Спам».</span>
+        </div>
+        <div class="adm-form-group">
+          <label>6-значный проверочный код</label>
+          <input type="text" id="adm-forgot-otp" class="adm-input" placeholder="123456" maxlength="6" style="letter-spacing:0.2em;font-size:1.2rem;text-align:center">
+          <div class="adm-hint">Код действителен в течение 10 минут.</div>
+        </div>
+        <div id="adm-forgot-err2" class="adm-alert danger" style="display:none"></div>
+        <div class="flex gap-2" style="margin-top:14px">
+          <button type="button" class="adm-btn-primary" onclick="handleVerifyOtp()">Подтвердить код</button>
+          <button type="button" class="adm-btn-secondary" onclick="showLoginCard()">Отмена</button>
+        </div>
+        <div style="margin-top:14px;text-align:center">
+          <a href="#master-key-step2" onclick="showMasterKeyRecovery()" style="font-size:0.8rem;color:#059669;text-decoration:underline;cursor:pointer">
+            Задержка письма? Использовать аварийный мастер-ключ →
+          </a>
+        </div>
+      </div>
+
+      <!-- Шаг 3: новый логин и пароль -->
+      <div id="adm-forgot-step3" style="display:none">
+        <div class="adm-alert info">
+          <span>✅ Код подтверждён! Установите новый логин и пароль для входа:</span>
+        </div>
+        <div class="adm-form-group">
+          <label>Логин администратора</label>
+          <input type="text" id="adm-forgot-new-login" class="adm-input" placeholder="viktoria" required autocomplete="username">
+          <div class="adm-hint">Вы можете оставить прежний логин или придумать новый.</div>
+        </div>
+        <div class="adm-form-group">
+          <label>Новый пароль (от 6 символов)</label>
+          <input type="password" id="adm-new-pass" class="adm-input" placeholder="••••••••" minlength="6" required autocomplete="new-password">
+        </div>
+        <div class="adm-form-group">
+          <label>Повторите новый пароль</label>
+          <input type="password" id="adm-new-pass2" class="adm-input" placeholder="••••••••" minlength="6" required autocomplete="new-password">
+        </div>
+        <div id="adm-forgot-err3" class="adm-alert danger" style="display:none"></div>
+        <button type="button" class="adm-btn-success" onclick="handleSaveNewPassword()" style="margin-top:10px">
+          Сохранить новый логин и пароль
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ГЛАВНАЯ ПАНЕЛЬ УПРАВЛЕНИЯ (DASHBOARD) -->
+  <div id="adm-dashboard-card" class="adm-card" style="display:none;max-width:720px">
+    <div class="adm-header">
+      <div>
+        <h2 style="display:flex;align-items:center;gap:9px">
+          <svg class="adm-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#c4b5fd"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Панель управления</span>
+        </h2>
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.7);margin-top:2px">Центр Здоровых Волос (dr-hair30.ru)</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" class="adm-btn-secondary" style="padding:6px 12px;font-size:0.75rem;background:rgba(255,255,255,0.15);color:#fff;border-color:transparent;display:inline-flex;align-items:center;gap:6px" onclick="handleAdminLogout()">
+          <svg class="adm-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Выйти</span>
+        </button>
+        <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+      </div>
+    </div>
+
+    <div class="adm-body">
+      <!-- Навигационные вкладки -->
+      <div class="adm-tabs">
+        <button type="button" class="adm-tab-btn active" onclick="switchAdmTab('tab-schedule', this)">
+          <svg class="adm-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>График работы</span>
+        </button>
+        <button type="button" class="adm-tab-btn" onclick="switchAdmTab('tab-announcement', this)">
+          <svg class="adm-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <span>Объявление</span>
+        </button>
+        <button type="button" class="adm-tab-btn" onclick="switchAdmTab('tab-services', this)">
+          <svg class="adm-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <span>Услуги и цены</span>
+        </button>
+        <button type="button" class="adm-tab-btn" onclick="switchAdmTab('tab-contacts', this)">
+          <svg class="adm-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Контакты</span>
+        </button>
+        <button type="button" class="adm-tab-btn" onclick="switchAdmTab('tab-security', this)">
+          <svg class="adm-svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span>Безопасность</span>
+        </button>
+      </div>
+
+      <!-- Вкладка 1: График работы -->
+      <div id="tab-schedule" class="adm-tab-content">
+        <div class="adm-form-group">
+          <label>Краткий текст графика (для верхней полосы сайта)</label>
+          <input type="text" id="adm-cfg-hours-short" class="adm-input" placeholder="Пн и Вс: 11:00–20:00 · Вт–Сб: выходной">
+          <div class="adm-hint">Отображается в самом верху сайта над шапкой.</div>
+        </div>
+
+        <div class="adm-form-group">
+          <label>Подробный график работы (для блока «Контакты»)</label>
+          <textarea id="adm-cfg-hours-detail" class="adm-textarea" rows="3" placeholder="Понедельник: 11:00–20:00&#10;Вторник – суббота: выходной&#10;Воскресенье: 11:00–20:00"></textarea>
+          <div class="adm-hint">Каждую строку пишите с новой строки.</div>
+        </div>
+
+        <div class="adm-form-group">
+          <label style="margin-bottom:8px">Настройка рабочих часов (для статуса «Сейчас открыто / закрыто»)</label>
+          <div class="adm-hint" style="margin-bottom:10px">
+            Сайт автоматически сверяет местное время Астрахани и зажигает зеленый огонек «Открыто сейчас (до 20:00)»:
+          </div>
+
+          <div id="adm-schedule-days">
+            <!-- 7 дней недели: Воскресенье (0) - Суббота (6) -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Вкладка 2: Объявление / Баннер -->
+      <div id="tab-announcement" class="adm-tab-content" style="display:none">
+        <div class="adm-alert info" style="margin-bottom:14px">
+          <span>📢 <b>Объявление автоматически отображается вверху сайта</b>, когда в поле ниже введён текст. Если вы хотите скрыть баннер с сайта — просто сотрите текст.</span>
+        </div>
+
+        <div class="adm-form-group">
+          <label style="font-weight:700">Текст объявления</label>
+          <textarea id="adm-cfg-ann-text" class="adm-textarea" rows="3" placeholder="Например: Внимание! В праздничный день 10 ноября центр работает с 10:00 до 16:00. Ждём вас!"></textarea>
+          <div class="adm-hint">Этот текст увидят все посетители в яркой полосе над шапкой сайта.</div>
+        </div>
+
+        <div class="adm-form-group">
+          <label style="font-weight:700">Цветовой стиль плашки</label>
+          <select id="adm-cfg-ann-style" class="adm-select">
+            <option value="purple">Сиреневый (фирменный стиль)</option>
+            <option value="gold">Золотой (акции и праздники)</option>
+            <option value="amber">Янтарный (срочное внимание)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Вкладка 3: Контакты -->
+      
+      <!-- Вкладка: Услуги и цены -->
+      <div id="tab-services" class="adm-tab-content" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div>
+            <div style="font-weight:700;font-size:0.9rem;color:#111827">Каталог услуг салона</div>
+            <div class="adm-hint">Меняйте названия, описания, цены и видимость услуг. Клиенты смогут выбрать их для записи.</div>
+          </div>
+          <button type="button" class="adm-btn-secondary" onclick="handleAddNewService()" style="background:#8A3FFC;color:#fff;border-color:transparent;font-size:0.8rem;padding:6px 12px;white-space:nowrap">
+            + Добавить услугу
+          </button>
+        </div>
+
+        <div id="adm-services-list" style="display:flex;flex-direction:column;gap:12px;max-height:480px;overflow-y:auto;padding-right:4px">
+          <!-- Динамический список услуг -->
+        </div>
+      </div>
+
+      <div id="tab-contacts" class="adm-tab-content" style="display:none">
+        <div class="adm-form-group">
+          <label>Номер телефона (отображение)</label>
+          <input type="text" id="adm-cfg-phone-text" class="adm-input" placeholder="+7 (988) 063-98-60">
+        </div>
+        <div class="adm-form-group">
+          <label>Номер телефона (только цифры для звонка и WhatsApp)</label>
+          <input type="text" id="adm-cfg-phone-digits" class="adm-input" placeholder="79880639860">
+        </div>
+        <div class="adm-form-group">
+          <label>Telegram мастера для заявок (username без @)</label>
+          <input type="text" id="adm-cfg-tg-order" class="adm-input" placeholder="VK30rus">
+        </div>
+        <div class="adm-form-group">
+          <label>Telegram-канал центра (username без @)</label>
+          <input type="text" id="adm-cfg-tg-channel" class="adm-input" placeholder="drhair30">
+        </div>
+        <div class="adm-form-group">
+          <label>Ссылка на мессенджер MAX</label>
+          <input type="text" id="adm-cfg-max-url" class="adm-input" placeholder="https://max.ru/u/...">
+        </div>
+      </div>
+
+      <!-- Вкладка 4: Безопасность -->
+      <div id="tab-security" class="adm-tab-content" style="display:none">
+        <div class="adm-alert info" style="margin-bottom:16px">
+          <span>Пароль защищён криптостойким алгоритмом SHA-256 с индивидуальной солью. Вход защищён от подбора (блокировка на 15 минут после 5 ошибок).</span>
+        </div>
+
+        <!-- 1. Привязанная почта ("уже в системе") -->
+        <div style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:16px">
+          <label style="font-weight:700;font-size:0.95rem;color:#1e293b;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+            <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#6366f1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Привязанная почта для восстановления пароля</span>
+          </label>
+          <p style="font-size:0.82rem;color:#64748b;margin-bottom:12px">
+            На эту почту отправляется проверочный код при сбросе доступа. Вы можете изменить её в любой момент:
+          </p>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input type="email" id="adm-sec-email" class="adm-input" style="flex:1;min-width:220px" placeholder="ваша-почта@mail.ru">
+            <button type="button" class="adm-btn-primary" onclick="handleUpdateBoundEmail()" style="white-space:nowrap;padding:10px 18px">
+              <svg class="adm-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/></svg>
+              <span>Сохранить почту</span>
+            </button>
+          </div>
+          <div id="adm-sec-email-notice" class="adm-alert success" style="display:none;margin-top:12px"></div>
+        </div>
+
+        <!-- 2. Аварийный мастер-ключ восстановления -->
+        <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:16px;margin-bottom:16px">
+          <label style="font-weight:700;font-size:0.95rem;color:#166534;margin-bottom:6px;display:flex;align-items:center;gap:8px">
+            <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#16a34a"><path d="M21 2l-2 2m-1.5 1.5L12 11l4 4 1.5-1.5M19 5l-7 7m-3.5 3.5a5 5 0 1 1 7.07-7.07l1.41 1.41a5 5 0 0 1-7.07 7.07z"/></svg>
+            <span>Аварийный мастер-ключ восстановления</span>
+          </label>
+          <p style="font-size:0.82rem;color:#15803d;margin-bottom:12px">
+            Сохраните этот ключ. С его помощью можно сбросить логин и пароль даже без доступа к почте:
+          </p>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input type="text" id="adm-sec-master-key" class="adm-input" readonly style="flex:1;min-width:220px;font-family:monospace;font-weight:700;font-size:1.05rem;background:#fff;color:#166534">
+            <button type="button" class="adm-btn-secondary" onclick="handleCopyMasterKey()" style="white-space:nowrap;padding:10px 18px">
+              <svg class="adm-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span>Скопировать ключ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Логин и смена пароля -->
+        <div style="background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:16px">
+          <div class="adm-form-group">
+            <label style="font-weight:700">Логин администратора</label>
+            <input type="text" id="adm-sec-login" class="adm-input">
+          </div>
+
+          <div class="adm-form-group" style="margin-top:14px;padding-top:14px;border-top:1px solid #e5e7eb">
+            <label style="font-weight:700">Сменить пароль (от 6 символов)</label>
+            <input type="password" id="adm-sec-newpass" class="adm-input" placeholder="Новый пароль (оставьте пустым, если не меняете)">
+          </div>
+
+          <div class="adm-form-group" style="margin-top:10px">
+            <label style="font-weight:700">Повторите новый пароль</label>
+            <input type="password" id="adm-sec-newpass2" class="adm-input" placeholder="Повторите новый пароль для подтверждения">
+          </div>
+        </div>
+
+        <div id="adm-sec-msg" class="adm-alert success" style="display:none;margin-top:12px"></div>
+      </div>
+
+      <!-- Кнопки действий -->
+      <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e5e7eb;display:flex;flex-direction:column;gap:10px">
+        <button type="button" class="adm-btn-success" onclick="handleSaveAdminConfig()" style="font-size:0.95rem;padding:13px">
+          <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          <span>Сохранить изменения</span>
+        </button>
+        <button type="button" class="adm-btn-secondary" onclick="handleExportHtml()" style="font-size:0.9rem;padding:11px" title="Скачать обновленный файл index.html для коммита в GitHub">
+          <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Скачать index.html для публикации на GitHub</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Всплывающее уведомление (Toast) -->
+<div id="adm-toast" class="adm-toast">
+  <span>✅ Изменения успешно сохранены и применены!</span>
 </div>
 
 </body>
