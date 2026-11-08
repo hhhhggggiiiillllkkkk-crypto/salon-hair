@@ -337,6 +337,37 @@
   font-size: 0.78rem;
   background: #fff;
 }
+.adm-time-input {
+  width: 68px !important;
+  padding: 5px 6px !important;
+  border-radius: 6px !important;
+  border: 1px solid #d1d5db !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  background: #fff !important;
+  text-align: center !important;
+  color: #111827 !important;
+  transition: all 0.2s ease !important;
+}
+.adm-time-input:focus {
+  border-color: #8A3FFC !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(138, 63, 252, 0.15) !important;
+}
+.adm-time-input:disabled {
+  background: #f3f4f6 !important;
+  color: #9ca3af !important;
+  border-color: #e5e7eb !important;
+  cursor: not-allowed !important;
+}
+.adm-day-closed-badge {
+  font-size: 0.74rem;
+  color: #6b7280;
+  font-weight: 600;
+  background: #e5e7eb;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
 
 .adm-toast {
   position: fixed;
@@ -961,12 +992,13 @@ const DEFAULT_DH_AUTH = {
   hash: "af2c0022c1b7ad8e8575ac8de9a6e515786fdfddc60e6717e44ef3decc054498",
   masterKeyHash: "f09c636bac3a0de03ceb5382fd8529a416e23029d023e6dc19af164c4bd0125b",
   githubRepo: "hhhhggggiiiillllkkkk-crypto/salon-hair",
+  githubEncBundle: "cBCWSRY24OtvLaRke/DWxHW87u3jlL/tGtM1PTbjpP5KuLpbpKK/ORuYeHC8/nHv2YRYfCS3Vaw0Jiyu89xzGqthaXkPMhVkPxTsVRPE0uxj18Wm",
   createdAt: "2026-11-08T12:00:00.000Z"
 };
 
 // Автоматическая инициализация учетной записи администратора
 (function initDrHairCredentials() {
-  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v5';
+  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v7';
   try {
     if (!localStorage.getItem(MIGRATION_KEY)) {
       let existing = null;
@@ -981,6 +1013,7 @@ const DEFAULT_DH_AUTH = {
         hash: DEFAULT_DH_AUTH.hash,
         masterKeyHash: DEFAULT_DH_AUTH.masterKeyHash,
         githubRepo: DEFAULT_DH_AUTH.githubRepo,
+        githubEncBundle: DEFAULT_DH_AUTH.githubEncBundle,
         createdAt: new Date().toISOString()
       };
 
@@ -1031,162 +1064,327 @@ const DEFAULT_DH_CONFIG = {
     telegramChannel: "drhair30",
     maxUrl: "https://max.ru/u/f9LHodD0cOKH4tpDfES8s2NN1KwC1JOP-9gtKVqNoGkdJImpYloST-JvAvc"
   },
-  services: [
-  {
-    "id": "s1",
-    "name": "Диагностика кожи головы и волос на трихоскопе",
-    "title": "Диагностика кожи головы и волос на трихоскопе",
-    "desc": "Компьютерный осмотр волосяных фолликулов и кожи под многократным увеличением для выявления причин выпадения и точного подбора курса.",
-    "price": "Бесплатно при процедуре",
-    "images": [
-      "images/2.jpg",
-      "images/3.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  },
-  {
-    "id": "s2",
-    "name": "Спа-программы для волос",
-    "title": "Спа-программы для волос",
-    "desc": "Комплексный релакс-уход: бережное глубокое очищение кожи головы, пилинг, расслабляющий массаж и интенсивное питание.",
-    "price": "от 3 500 ₽",
-    "images": [
-      "images/14.jpg",
-      "images/15.jpg",
-      "images/16.jpg",
-      "images/17.jpg"
-    ],
-    "gridClass": "grid-4",
-    "visible": true
-  },
-  {
-    "id": "s3",
-    "name": "Авторский курс против выпадения волос для женщин",
-    "title": "Курс против выпадения волос для женщин",
-    "desc": "Авторский протокол восстановления густоты: укрепляет волосяные фолликулы, пробуждает спящие луковицы и останавливает выпадение уже после 1-й процедуры.",
-    "price": "от 4 000 ₽",
-    "images": [
-      "images/loss_f1.jpg",
-      "images/loss_f2.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  },
-  {
-    "id": "s4",
-    "name": "Авторский курс против выпадения волос для мужчин",
-    "title": "Курс против выпадения волос для мужчин",
-    "desc": "Эффективный протокол против андрогенного поредения и алопеции: блокирует выпадение, активирует рост волос на залысинах и уплотняет структуру.",
-    "price": "от 4 000 ₽",
-    "images": [
-      "images/4.jpg",
-      "images/5.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  },
-  {
-    "id": "s5",
-    "name": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия и тд)",
-    "title": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия)",
-    "desc": "Тотальное преображение структуры: идеальная гладкость, зеркальный блеск, плотность и устранение пушистости на срок до 6 месяцев.",
-    "price": "от 3 500 ₽",
-    "images": [
-      "images/6.jpg",
-      "images/7.jpg",
-      "images/8.jpg",
-      "images/9.jpg"
-    ],
-    "gridClass": "grid-4",
-    "visible": true
-  },
-  {
-    "id": "s6",
-    "name": "Восстановление волос любой сложности",
-    "title": "Восстановление волос любой сложности",
-    "desc": "Спасение сильно повреждённых, обесцвеченных и ломких волос. Восполнение утраченных липидов и протеинового каркаса волоса.",
-    "price": "от 3 000 ₽",
-    "images": [
-      "images/restore_1.jpg",
-      "images/restore_2.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  },
-  {
-    "id": "s7",
-    "name": "Холодный салонный уход для волос",
-    "title": "Холодный салонный уход для волос",
-    "desc": "Бережная процедура без горячих утюжков: интенсивное насыщение влагой, эластичность, гладкость и здоровое сияние.",
-    "price": "от 2 500 ₽",
-    "images": [
-      "images/cold_1.jpg",
-      "images/cold_2.jpg",
-      "images/cold_3.jpg"
-    ],
-    "gridClass": "grid-3",
-    "visible": true
-  },
-  {
-    "id": "s8",
-    "name": "Прикорневой объём на кератине Wowboost",
-    "title": "Прикорневой объём на кератине Wowboost",
-    "desc": "Стойкий естественный объём у корней по авторской методике Wowboost без заломов и гофре. Держится от 3 до 5 месяцев.",
-    "price": "от 3 000 ₽",
-    "images": [
-      "images/10.jpg",
-      "images/11.jpg",
-      "images/12.jpg",
-      "images/13.jpg"
-    ],
-    "gridClass": "grid-4",
-    "visible": true
-  },
-  {
-    "id": "s9",
-    "name": "Пилинг кожи головы и детокс системы",
-    "title": "Пилинг кожи головы и детокс системы",
-    "desc": "Глубокое очищение от себума, стайлинга и ороговевших клеток. Улучшает микроциркуляцию и насыщает волосяные луковицы кислородом.",
-    "price": "от 2 000 ₽",
-    "images": [
-      "images/peel_1.jpg",
-      "images/peel_2.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  },
-  {
-    "id": "s10",
-    "name": "Уход за детскими волосами",
-    "title": "Уход за детскими волосами",
-    "desc": "Деликатные гипоаллергенные салонные уходы для лёгкого расчёсывания, мягкости, послушности и бережной защиты детских волос.",
-    "price": "от 1 500 ₽",
-    "images": [
-      "images/kids.jpg"
-    ],
-    "gridClass": "grid-1",
-    "visible": true
-  },
-  {
-    "id": "s11",
-    "name": "Полировка волос и стрижка кончиков",
-    "title": "Полировка волос и стрижка кончиков",
-    "desc": "Бережное удаление до 90% секущихся концов по всей длине с сохранением максимальной длины волос и создание аккуратного ровного среза.",
-    "price": "от 1 000 ₽",
-    "images": [
-      "images/polish_1.jpg",
-      "images/polish_2.jpg"
-    ],
-    "gridClass": "grid-2",
-    "visible": true
-  }
-]
+  services:   [
+    {
+      "id": "s1",
+      "name": "Диагностика кожи головы и волос на трихоскопе",
+      "title": "Диагностика кожи головы и волос на трихоскопе",
+      "desc": "Компьютерный осмотр волосяных фолликулов и кожи под многократным увеличением для выявления причин выпадения и точного подбора курса.",
+      "price": "",
+      "images": [
+        "images/2.jpg",
+        "images/3.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    },
+    {
+      "id": "s2",
+      "name": "Спа-программы для волос",
+      "title": "Спа-программы для волос",
+      "desc": "Комплексный релакс-уход: бережное глубокое очищение кожи головы, пилинг, расслабляющий массаж и интенсивное питание.",
+      "price": "",
+      "images": [
+        "images/14.jpg",
+        "images/15.jpg",
+        "images/16.jpg",
+        "images/17.jpg"
+      ],
+      "gridClass": "grid-4",
+      "visible": true
+    },
+    {
+      "id": "s3",
+      "name": "Авторский курс против выпадения волос для женщин",
+      "title": "Курс против выпадения волос для женщин",
+      "desc": "Авторский протокол восстановления густоты: укрепляет волосяные фолликулы, пробуждает спящие луковицы и останавливает выпадение уже после 1-й процедуры.",
+      "price": "",
+      "images": [
+        "images/loss_f1.jpg",
+        "images/loss_f2.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    },
+    {
+      "id": "s4",
+      "name": "Авторский курс против выпадения волос для мужчин",
+      "title": "Курс против выпадения волос для мужчин",
+      "desc": "Эффективный протокол против андрогенного поредения и алопеции: блокирует выпадение, активирует рост волос на залысинах и уплотняет структуру.",
+      "price": "",
+      "images": [
+        "images/4.jpg",
+        "images/5.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    },
+    {
+      "id": "s5",
+      "name": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия и тд)",
+      "title": "Реконструкция волос (кератин, ботокс, нанопластика, биксипластия)",
+      "desc": "Тотальное преображение структуры: идеальная гладкость, зеркальный блеск, плотность и устранение пушистости на срок до 6 месяцев.",
+      "price": "",
+      "images": [
+        "images/6.jpg",
+        "images/7.jpg",
+        "images/8.jpg",
+        "images/9.jpg"
+      ],
+      "gridClass": "grid-4",
+      "visible": true
+    },
+    {
+      "id": "s6",
+      "name": "Восстановление волос любой сложности",
+      "title": "Восстановление волос любой сложности",
+      "desc": "Спасение сильно повреждённых, обесцвеченных и ломких волос. Восполнение утраченных липидов и протеинового каркаса волоса.",
+      "price": "",
+      "images": [
+        "images/restore_1.jpg",
+        "images/restore_2.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    },
+    {
+      "id": "s7",
+      "name": "Холодный салонный уход для волос",
+      "title": "Холодный салонный уход для волос",
+      "desc": "Бережная процедура без горячих утюжков: интенсивное насыщение влагой, эластичность, гладкость и здоровое сияние.",
+      "price": "",
+      "images": [
+        "images/cold_1.jpg",
+        "images/cold_2.jpg",
+        "images/cold_3.jpg"
+      ],
+      "gridClass": "grid-3",
+      "visible": true
+    },
+    {
+      "id": "s8",
+      "name": "Прикорневой объём на кератине Wowboost",
+      "title": "Прикорневой объём на кератине Wowboost",
+      "desc": "Стойкий естественный объём у корней по авторской методике Wowboost без заломов и гофре. Держится от 3 до 5 месяцев.",
+      "price": "",
+      "images": [
+        "images/10.jpg",
+        "images/11.jpg",
+        "images/12.jpg",
+        "images/13.jpg"
+      ],
+      "gridClass": "grid-4",
+      "visible": true
+    },
+    {
+      "id": "s9",
+      "name": "Пилинг кожи головы и детокс системы",
+      "title": "Пилинг кожи головы и детокс системы",
+      "desc": "Глубокое очищение от себума, стайлинга и ороговевших клеток. Улучшает микроциркуляцию и насыщает волосяные луковицы кислородом.",
+      "price": "",
+      "images": [
+        "images/peel_1.jpg",
+        "images/peel_2.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    },
+    {
+      "id": "s10",
+      "name": "Уход за детскими волосами",
+      "title": "Уход за детскими волосами",
+      "desc": "Деликатные гипоаллергенные салонные уходы для лёгкого расчёсывания, мягкости, послушности и бережной защиты детских волос.",
+      "price": "",
+      "images": [
+        "images/kids.jpg"
+      ],
+      "gridClass": "grid-1",
+      "visible": true
+    },
+    {
+      "id": "s11",
+      "name": "Полировка волос и стрижка кончиков",
+      "title": "Полировка волос и стрижка кончиков",
+      "desc": "Бережное удаление до 90% секущихся концов по всей длине с сохранением максимальной длины волос и создание аккуратного ровного среза.",
+      "price": "",
+      "images": [
+        "images/polish_1.jpg",
+        "images/polish_2.jpg"
+      ],
+      "gridClass": "grid-2",
+      "visible": true
+    }
+  ]
 };
 
 const DAY_NAMES = [
   'Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'
 ];
+const DAY_ORDER = [1, 2, 3, 4, 5, 6, 0];
+const DAY_SHORT = { 1: 'Пн', 2: 'Вт', 3: 'Ср', 4: 'Чт', 5: 'Пт', 6: 'Сб', 0: 'Вс' };
+const DAY_FULL = { 1: 'Понедельник', 2: 'Вторник', 3: 'Среда', 4: 'Четверг', 5: 'Пятница', 6: 'Суббота', 0: 'Воскресенье' };
+
+function formatTimeDisplay(val, fallback = '11:00') {
+  if (val === undefined || val === null || val === '') return fallback;
+  const str = String(val).trim();
+  if (/^\d{1,2}:\d{2}$/.test(str)) {
+    const parts = str.split(':');
+    return parts[0].padStart(2, '0') + ':' + parts[1];
+  }
+  if (/^\d{1,2}$/.test(str)) {
+    return str.padStart(2, '0') + ':00';
+  }
+  if (/^\d{1,2}[.,]\d{2}$/.test(str)) {
+    const parts = str.split(/[.,]/);
+    return parts[0].padStart(2, '0') + ':' + parts[1];
+  }
+  return str || fallback;
+}
+
+function parseTimeToMinutes(val, fallbackMinutes = 0) {
+  if (typeof val === 'number') return val * 60;
+  if (!val) return fallbackMinutes;
+  const str = String(val).trim();
+  const m = str.match(/^(\d{1,2})(?::(\d{2}))?$/);
+  if (m) {
+    const h = parseInt(m[1], 10);
+    const min = m[2] ? parseInt(m[2], 10) : 0;
+    return h * 60 + min;
+  }
+  return fallbackMinutes;
+}
+
+function generateScheduleStrings(sched) {
+  if (!sched) return { hoursShort: DEFAULT_DH_CONFIG.hoursShort, hoursDetail: DEFAULT_DH_CONFIG.hoursDetail };
+
+  const daysInfo = DAY_ORDER.map(d => {
+    const item = sched[d] || { active: false, from: '11:00', to: '20:00' };
+    const isActive = Boolean(item.active);
+    const timeStr = isActive ? (formatTimeDisplay(item.from, '11:00') + '–' + formatTimeDisplay(item.to, '20:00')) : 'выходной';
+    return { day: d, active: isActive, timeStr };
+  });
+
+  const allSame = daysInfo.every(d => d.timeStr === daysInfo[0].timeStr);
+  if (allSame) {
+    if (!daysInfo[0].active) {
+      return { hoursShort: 'Выходной', hoursDetail: 'Выходной' };
+    }
+    return {
+      hoursShort: 'Пн–Вс: ' + daysInfo[0].timeStr + ' (ежедневно)',
+      hoursDetail: 'Ежедневно: ' + daysInfo[0].timeStr
+    };
+  }
+
+  const consecutiveGroups = [];
+  let currentGroup = null;
+
+  for (let i = 0; i < daysInfo.length; i++) {
+    const cur = daysInfo[i];
+    if (!currentGroup || currentGroup.timeStr !== cur.timeStr) {
+      currentGroup = { timeStr: cur.timeStr, active: cur.active, days: [cur.day] };
+      consecutiveGroups.push(currentGroup);
+    } else {
+      currentGroup.days.push(cur.day);
+    }
+  }
+
+  function formatShortDays(dayList) {
+    if (dayList.length === 1) return DAY_SHORT[dayList[0]];
+    if (dayList.length === 2) return DAY_SHORT[dayList[0]] + ' и ' + DAY_SHORT[dayList[1]];
+    return DAY_SHORT[dayList[0]] + '–' + DAY_SHORT[dayList[dayList.length - 1]];
+  }
+
+  function formatFullDays(dayList) {
+    if (dayList.length === 1) return DAY_FULL[dayList[0]];
+    if (dayList.length === 2) return DAY_FULL[dayList[0]] + ' и ' + DAY_FULL[dayList[1]].toLowerCase();
+    return DAY_FULL[dayList[0]] + ' – ' + DAY_FULL[dayList[dayList.length - 1]].toLowerCase();
+  }
+
+  const detailLines = consecutiveGroups.map(g => {
+    return formatFullDays(g.days) + ': ' + g.timeStr;
+  });
+
+  const byTime = new Map();
+  for (const item of daysInfo) {
+    if (!byTime.has(item.timeStr)) {
+      byTime.set(item.timeStr, { timeStr: item.timeStr, active: item.active, days: [] });
+    }
+    byTime.get(item.timeStr).days.push(item.day);
+  }
+
+  const shortParts = [];
+  const sortedEntries = Array.from(byTime.values()).sort((a, b) => (b.active ? 1 : 0) - (a.active ? 1 : 0));
+
+  for (const entry of sortedEntries) {
+    const dayIndices = entry.days;
+    const ranges = [];
+    let curRange = [];
+
+    DAY_ORDER.forEach(d => {
+      if (dayIndices.includes(d)) {
+        curRange.push(d);
+      } else if (curRange.length > 0) {
+        ranges.push(curRange);
+        curRange = [];
+      }
+    });
+    if (curRange.length > 0) ranges.push(curRange);
+
+    const rangeLabels = ranges.map(r => formatShortDays(r));
+    const label = rangeLabels.join(' и ');
+    shortParts.push(label + ': ' + entry.timeStr);
+  }
+
+  return {
+    hoursShort: shortParts.join(' · '),
+    hoursDetail: detailLines.join('\n')
+  };
+}
+
+function getScheduleFromInputs() {
+  const sched = {};
+  [0, 1, 2, 3, 4, 5, 6].forEach(d => {
+    const act = Boolean(document.getElementById('sched-active-' + d)?.checked);
+    const fr = formatTimeDisplay(document.getElementById('sched-from-' + d)?.value, '11:00');
+    const to = formatTimeDisplay(document.getElementById('sched-to-' + d)?.value, '20:00');
+    sched[d] = { active: act, from: fr, to: to };
+  });
+  return sched;
+}
+
+function onScheduleDayToggle(d) {
+  const act = Boolean(document.getElementById('sched-active-' + d)?.checked);
+  const fromEl = document.getElementById('sched-from-' + d);
+  const toEl = document.getElementById('sched-to-' + d);
+  const statusEl = document.getElementById('sched-status-' + d);
+
+  if (fromEl) fromEl.disabled = !act;
+  if (toEl) toEl.disabled = !act;
+  if (statusEl) statusEl.style.display = act ? 'none' : 'inline-block';
+
+  onScheduleTimeInput();
+}
+
+function onScheduleTimeInput() {
+  const sched = getScheduleFromInputs();
+  const strings = generateScheduleStrings(sched);
+
+  const shortInput = document.getElementById('adm-cfg-hours-short');
+  const detailInput = document.getElementById('adm-cfg-hours-detail');
+  if (shortInput) shortInput.value = strings.hoursShort;
+  if (detailInput) detailInput.value = strings.hoursDetail;
+
+  const prevShort = document.getElementById('adm-preview-short');
+  const prevDetail = document.getElementById('adm-preview-detail');
+  if (prevShort) prevShort.textContent = strings.hoursShort;
+  if (prevDetail) prevDetail.textContent = strings.hoursDetail;
+
+  // Динамически обновляем верхнюю плашку и блок контактов на сайте в реальном времени
+  const hrsEls = document.querySelectorAll('[data-hrs]');
+  hrsEls.forEach(e => e.textContent = strings.hoursShort);
+  const detailEl = document.getElementById('contacts-hours-detail');
+  if (detailEl) detailEl.innerHTML = escapeHtml(strings.hoursDetail).replace(/\n/g, '<br>');
+}
 
 function getActiveConfig() {
   try {
@@ -1238,6 +1436,69 @@ function generateRandomSalt() {
   const arr = new Uint8Array(16);
   crypto.getRandomValues(arr);
   return Array.from(arr).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Расшифровка AES-GCM бандла с токеном публикации GitHub
+async function decryptAesGcm(bundleBase64, password) {
+  try {
+    if (!bundleBase64 || !password) return null;
+    const binary = atob(bundleBase64);
+    const raw = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) raw[i] = binary.charCodeAt(i);
+    const salt = raw.subarray(0, 16);
+    const iv = raw.subarray(16, 28);
+    const ciphertext = raw.subarray(28);
+
+    const pwUtf8 = new TextEncoder().encode(password);
+    const baseKey = await crypto.subtle.importKey('raw', pwUtf8, { name: 'PBKDF2' }, false, ['deriveKey']);
+    const aesKey = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' },
+      baseKey,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['decrypt']
+    );
+    const decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: iv },
+      aesKey,
+      ciphertext
+    );
+    return new TextDecoder().decode(decrypted);
+  } catch (e) {
+    console.warn('[DH] Decryption failed:', e);
+    return null;
+  }
+}
+
+async function encryptAesGcm(plainText, password) {
+  try {
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const pwUtf8 = new TextEncoder().encode(password);
+    const baseKey = await crypto.subtle.importKey('raw', pwUtf8, { name: 'PBKDF2' }, false, ['deriveKey']);
+    const aesKey = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: salt, iterations: 100000, hash: 'SHA-256' },
+      baseKey,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['encrypt']
+    );
+    const encrypted = await crypto.subtle.encrypt(
+      { name: 'AES-GCM', iv: iv },
+      aesKey,
+      new TextEncoder().encode(plainText)
+    );
+    const combined = new Uint8Array(salt.length + iv.length + encrypted.byteLength);
+    combined.set(salt, 0);
+    combined.set(iv, 16);
+    combined.set(new Uint8Array(encrypted), 28);
+    let binary = '';
+    for (let i = 0; i < combined.length; i++) binary += String.fromCharCode(combined[i]);
+    return btoa(binary);
+  } catch (e) {
+    console.warn('[DH] Encryption failed:', e);
+    return null;
+  }
 }
 
 // 3. Применение конфигурации к элементам страницы
@@ -1299,37 +1560,54 @@ function updateSalonStatus() {
       timeZone: 'Europe/Astrakhan',
       weekday: 'short',
       hour: 'numeric',
+      minute: 'numeric',
       hourCycle: 'h23'
     });
     const parts = formatter.formatToParts(new Date());
     const wdStr = parts.find(p => p.type === 'weekday').value;
     const hour = parseInt(parts.find(p => p.type === 'hour').value, 10);
+    const minute = parseInt(parts.find(p => p.type === 'minute').value, 10);
+    const currentMin = hour * 60 + minute;
     const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
     const day = dayMap[wdStr] ?? new Date().getDay();
     const today = sched[day];
 
-    if (today && today.active && hour >= today.from && hour < today.to) {
-      isOpen = true;
-      statusText = 'Открыто сейчас (до ' + today.to + ':00)';
-    } else if (!today || !today.active) {
-      statusText = 'Сейчас закрыто (выходной)';
-    } else if (hour < today.from) {
-      statusText = 'Сейчас закрыто (откроется в ' + today.from + ':00)';
+    if (today && today.active) {
+      const fromMin = parseTimeToMinutes(today.from, 11 * 60);
+      const toMin = parseTimeToMinutes(today.to, 20 * 60);
+      const toStr = formatTimeDisplay(today.to, '20:00');
+      const fromStr = formatTimeDisplay(today.from, '11:00');
+
+      if (currentMin >= fromMin && currentMin < toMin) {
+        isOpen = true;
+        statusText = 'Открыто сейчас (до ' + toStr + ')';
+      } else if (currentMin < fromMin) {
+        statusText = 'Сейчас закрыто (откроется в ' + fromStr + ')';
+      } else {
+        statusText = 'Сейчас закрыто';
+      }
     } else {
-      statusText = 'Сейчас закрыто';
+      statusText = 'Сейчас закрыто (выходной)';
     }
   } catch (err) {
     const d = new Date(Date.now() + 4 * 3600000);
     const hour = d.getUTCHours();
+    const minute = d.getUTCMinutes();
+    const currentMin = hour * 60 + minute;
     const day = d.getUTCDay();
     const today = sched[day];
-    if (today && today.active && hour >= today.from && hour < today.to) {
-      isOpen = true;
-      statusText = 'Открыто сейчас (до ' + today.to + ':00)';
-    } else if (!today || !today.active) {
-      statusText = 'Сейчас закрыто (выходной)';
+    if (today && today.active) {
+      const fromMin = parseTimeToMinutes(today.from, 11 * 60);
+      const toMin = parseTimeToMinutes(today.to, 20 * 60);
+      const toStr = formatTimeDisplay(today.to, '20:00');
+      if (currentMin >= fromMin && currentMin < toMin) {
+        isOpen = true;
+        statusText = 'Открыто сейчас (до ' + toStr + ')';
+      } else {
+        statusText = 'Сейчас закрыто';
+      }
     } else {
-      statusText = 'Сейчас закрыто';
+      statusText = 'Сейчас закрыто (выходной)';
     }
   }
 
@@ -1566,6 +1844,22 @@ async function handleAdminLogin(e) {
     localStorage.setItem(DH_ATTEMPTS_KEY, '0');
     startSession(authData.login);
     errEl.style.display = 'none';
+
+    // Автоматическая расшифровка токена публикации GitHub для мгновенного сохранения с телефона
+    if (authData.githubEncBundle) {
+      try {
+        const decryptedToken = await decryptAesGcm(authData.githubEncBundle, passInput);
+        if (decryptedToken && decryptedToken.startsWith('ghp_')) {
+          activeAdminGithubToken = decryptedToken;
+          localStorage.setItem('dh_github_token', decryptedToken);
+          sessionStorage.setItem('dh_active_gh_token', decryptedToken);
+          console.debug('[DH] Cloud sync token ready');
+        }
+      } catch (tokErr) {
+        console.warn('[DH] Could not decrypt token:', tokErr);
+      }
+    }
+
     showToast('Авторизация успешна');
     showDashboardCard();
   } else {
@@ -2166,39 +2460,38 @@ function populateDashboardForm() {
   populateAdminServicesList();
   const cfg = getActiveConfig();
 
-  // График кратко и подробно
-  document.getElementById('adm-cfg-hours-short').value = cfg.hoursShort || DEFAULT_DH_CONFIG.hoursShort;
-  document.getElementById('adm-cfg-hours-detail').value = cfg.hoursDetail || DEFAULT_DH_CONFIG.hoursDetail;
-
-  // Отрисовка дней недели
+  // Отрисовка дней недели с гибким вводом времени
   const daysContainer = document.getElementById('adm-schedule-days');
   const sched = cfg.schedule || DEFAULT_DH_CONFIG.schedule;
   let daysHtml = '';
 
-  // Отображаем с Понедельника (1) по Воскресенье (0)
   const dayOrder = [1, 2, 3, 4, 5, 6, 0];
   dayOrder.forEach(d => {
-    const dayData = sched[d] || { active: false, from: 11, to: 20 };
+    const dayData = sched[d] || { active: false, from: '11:00', to: '20:00' };
+    const fromVal = formatTimeDisplay(dayData.from, '11:00');
+    const toVal = formatTimeDisplay(dayData.to, '20:00');
+    const isActive = Boolean(dayData.active);
+
     daysHtml += `
-      <div class="adm-day-row">
+      <div class="adm-day-row" id="sched-row-${d}">
         <label>
-          <input type="checkbox" id="sched-active-${d}" ${dayData.active ? 'checked' : ''} style="width:16px;height:16px;accent-color:#8A3FFC">
+          <input type="checkbox" id="sched-active-${d}" ${isActive ? 'checked' : ''} onchange="onScheduleDayToggle(${d})" style="width:16px;height:16px;accent-color:#8A3FFC">
           <span>${DAY_NAMES[d]}</span>
         </label>
-        <div class="adm-day-hours">
-          <span>с</span>
-          <select id="sched-from-${d}">
-            ${[8,9,10,11,12,13,14].map(h => `<option value="${h}" ${dayData.from === h ? 'selected' : ''}>${h}:00</option>`).join('')}
-          </select>
-          <span>до</span>
-          <select id="sched-to-${d}">
-            ${[16,17,18,19,20,21,22].map(h => `<option value="${h}" ${dayData.to === h ? 'selected' : ''}>${h}:00</option>`).join('')}
-          </select>
+        <div class="adm-day-hours" id="sched-hours-wrap-${d}">
+          <span style="font-size:12px;color:#6b7280">с</span>
+          <input type="text" id="sched-from-${d}" class="adm-time-input" value="${fromVal}" placeholder="11:00" maxlength="5" oninput="onScheduleTimeInput()" ${isActive ? '' : 'disabled'}>
+          <span style="font-size:12px;color:#6b7280">до</span>
+          <input type="text" id="sched-to-${d}" class="adm-time-input" value="${toVal}" placeholder="20:00" maxlength="5" oninput="onScheduleTimeInput()" ${isActive ? '' : 'disabled'}>
+          <span id="sched-status-${d}" class="adm-day-closed-badge" style="${isActive ? 'display:none' : 'display:inline-block'}">выходной</span>
         </div>
       </div>
     `;
   });
   daysContainer.innerHTML = daysHtml;
+
+  // Автоматический пересчет и обновление живого превью
+  onScheduleTimeInput();
 
   // Баннер
   const ann = cfg.announcement || DEFAULT_DH_CONFIG.announcement;
@@ -2280,18 +2573,20 @@ function handleCopyMasterKey() {
 }
 
 async function handleSaveAdminConfig() {
-  const newSchedule = {};
-  [0, 1, 2, 3, 4, 5, 6].forEach(d => {
-    const act = document.getElementById('sched-active-' + d)?.checked || false;
-    const fr = parseInt(document.getElementById('sched-from-' + d)?.value || '11', 10);
-    const to = parseInt(document.getElementById('sched-to-' + d)?.value || '20', 10);
-    newSchedule[d] = { active: act, from: fr, to: to };
-  });
+  const newSchedule = getScheduleFromInputs();
+  const autoStrings = generateScheduleStrings(newSchedule);
 
+  const manualShort = document.getElementById('adm-cfg-hours-short')?.value.trim();
+  const manualDetail = document.getElementById('adm-cfg-hours-detail')?.value.trim();
+  const finalShort = manualShort || autoStrings.hoursShort;
+  const finalDetail = manualDetail || autoStrings.hoursDetail;
+
+  const currentCfg = getActiveConfig();
   const updatedConfig = {
+    ...currentCfg,
     services: admServicesEditing,
-    hoursShort: document.getElementById('adm-cfg-hours-short').value.trim(),
-    hoursDetail: document.getElementById('adm-cfg-hours-detail').value.trim(),
+    hoursShort: finalShort,
+    hoursDetail: finalDetail,
     schedule: newSchedule,
     announcement: {
       enabled: Boolean(document.getElementById('adm-cfg-ann-text').value.trim()),
@@ -2307,9 +2602,8 @@ async function handleSaveAdminConfig() {
     }
   };
 
-  // Сохраняем в память
   saveActiveConfig(updatedConfig);
-
+  applySiteConfig(updatedConfig);
   // Обновляем настройки безопасности (если менялись)
   const newLogin = document.getElementById('adm-sec-login').value.trim();
   const newEmail = document.getElementById('adm-sec-email').value.trim().toLowerCase();
@@ -2928,9 +3222,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <a data-l="tel" class="btn s o">Позвонить</a>
       </div>
       
-      <div class="mt-4 flex flex-wrap gap-2">
-        <a class="btn s" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/">Яндекс Карты</a>
-        <a class="btn s" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/48.023529%2C46.342625">2ГИС</a>
+      <div class="mt-4 pt-3" style="border-top:1px solid #e5e7eb">
+        <p class="text-xs uppercase tracking-wider font-semibold mb-2" style="color:var(--muted)">⭐ Отзывы и карты</p>
+        <div class="flex flex-wrap gap-2">
+          <a class="btn s" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/reviews/" style="background:#fc3f1d;color:#fff">Почитать отзывы на Яндекс Картах</a>
+          <a class="btn s" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/tab/reviews" style="background:#2bba00;color:#fff">Почитать отзывы в 2ГИС</a>
+          <a class="btn s o" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/">Яндекс Карты</a>
+          <a class="btn s o" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/48.023529%2C46.342625">2ГИС</a>
+        </div>
       </div>
     </div>
     <iframe title="Карта: Центр Здоровых Волос" class="w-full h-72 md:h-full min-h-72 rounded-2xl border-0" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=48.023369%2C46.342538&z=16&pt=48.023369,46.342538,pm2rdm"></iframe>
@@ -3218,28 +3517,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
       <!-- Вкладка 1: График работы -->
       <div id="tab-schedule" class="adm-tab-content">
-        <div class="adm-form-group">
-          <label>Краткий текст графика (для верхней полосы сайта)</label>
-          <input type="text" id="adm-cfg-hours-short" class="adm-input" placeholder="Пн и Вс: 11:00–20:00 · Вт–Сб: выходной">
-          <div class="adm-hint">Отображается в самом верху сайта над шапкой.</div>
+        <div class="adm-alert info" style="margin-bottom:14px">
+          <span>🕒 <b>Гибкая настройка расписания</b>: выставляйте рабочие дни и вводите часы вручную (например, 11:00 и 20:00 или 10:30). Текст на верхней полосе сайта и в контактах обновится автоматически!</span>
         </div>
 
         <div class="adm-form-group">
-          <label>Подробный график работы (для блока «Контакты»)</label>
-          <textarea id="adm-cfg-hours-detail" class="adm-textarea" rows="3" placeholder="Понедельник: 11:00–20:00&#10;Вторник – суббота: выходной&#10;Воскресенье: 11:00–20:00"></textarea>
-          <div class="adm-hint">Каждую строку пишите с новой строки.</div>
-        </div>
-
-        <div class="adm-form-group">
-          <label style="margin-bottom:8px">Настройка рабочих часов (для статуса «Сейчас открыто / закрыто»)</label>
+          <label style="font-weight:700;margin-bottom:6px">Рабочие дни и часы работы салона</label>
           <div class="adm-hint" style="margin-bottom:10px">
-            Сайт автоматически сверяет местное время Астрахани и зажигает зеленый огонек «Открыто сейчас (до 20:00)»:
+            Отметьте галочками рабочие дни и впишите время начала и окончания работы. Если галочка снята — день считается выходным:
           </div>
 
           <div id="adm-schedule-days">
             <!-- 7 дней недели: Воскресенье (0) - Суббота (6) -->
           </div>
         </div>
+
+        <!-- Превью автоматического формирования расписания -->
+        <div class="adm-alert success" style="margin-top:12px;margin-bottom:16px;background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6">
+          <div style="font-weight:700;font-size:0.85rem;margin-bottom:4px;display:flex;align-items:center;gap:6px">
+            <span>✨</span>
+            <span>Автоматический расчет для сайта:</span>
+          </div>
+          <div style="font-size:0.8rem;line-height:1.4"><b>Верхняя плашка:</b> <span id="adm-preview-short">Пн и Вс: 11:00–20:00 · Вт–Сб: выходной</span></div>
+          <div style="font-size:0.8rem;line-height:1.4;margin-top:4px"><b>В блоке «Контакты»:</b><br><span id="adm-preview-detail" style="white-space:pre-line">Понедельник: 11:00–20:00&#10;Вторник – суббота: выходной&#10;Воскресенье: 11:00–20:00</span></div>
+        </div>
+
+        <details style="margin-top:10px;padding:8px 12px;background:#f9fafb;border-radius:8px;border:1px solid #e5e7eb">
+          <summary style="cursor:pointer;font-size:0.8rem;font-weight:600;color:#6b7280">Ручная корректировка текста (при необходимости)</summary>
+          <div class="adm-form-group" style="margin-top:10px">
+            <label>Краткий текст графика (для верхней полосы сайта)</label>
+            <input type="text" id="adm-cfg-hours-short" class="adm-input" placeholder="Пн и Вс: 11:00–20:00 · Вт–Сб: выходной">
+          </div>
+          <div class="adm-form-group">
+            <label>Подробный график работы (для блока «Контакты»)</label>
+            <textarea id="adm-cfg-hours-detail" class="adm-textarea" rows="3" placeholder="Понедельник: 11:00–20:00&#10;Вторник – суббота: выходной&#10;Воскресенье: 11:00–20:00"></textarea>
+          </div>
+        </details>
       </div>
 
       <!-- Вкладка 2: Объявление / Баннер -->
