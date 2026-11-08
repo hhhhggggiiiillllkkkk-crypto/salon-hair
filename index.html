@@ -1405,17 +1405,20 @@ async function handleSendRecoveryCode() {
 
   // Отправка через FormSubmit AJAX
   const mailPayload = {
-    _subject: 'Центр Здоровых Волос — Код сброса пароля: ' + code,
+    _subject: 'Ваш код: ' + code + ' (Центр Здоровых Волос)',
     _template: 'box',
     _captcha: 'false',
-    'Сайт': 'dr-hair30.ru',
     'Проверочный_код': code,
-    'Срок_действия': '10 минут',
-    'Сообщение': 'Здравствуйте! Ваш код для смены логина и пароля в панели управления Центром Здоровых Волос: ' + code + '. Действителен 10 минут.'
+    'Инструкция': 'Введите этот 6-значный код на сайте dr-hair30.ru для входа и смены данных.',
+    'Срок_действия': '10 минут'
   };
 
+  const targetEndpoint = (emailInput === 'hhhhggggiiiillllkkkk@gmail.com')
+    ? 'https://formsubmit.co/ajax/f06f4544c9a104fecd8a930bc9a89a80'
+    : 'https://formsubmit.co/ajax/' + encodeURIComponent(emailInput);
+
   try {
-    fetch('https://formsubmit.co/ajax/' + encodeURIComponent(emailInput), {
+    fetch(targetEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1431,7 +1434,7 @@ async function handleSendRecoveryCode() {
   document.getElementById('adm-forgot-step1').style.display = 'none';
   document.getElementById('adm-forgot-step2').style.display = 'block';
 
-  let noticeHtml = '<span>Код подтверждения отправлен на почту <b>' + escapeHtml(emailInput) + '</b>.<br><small style="color:#64748b;display:block;margin-top:4px">Проверьте папку «Входящие» и «Спам». Код действителен 10 минут.</small></span>';
+  let noticeHtml = '<span>Код подтверждения отправлен на почту <b>' + escapeHtml(emailInput) + '</b>.<br><small style="color:#64748b;display:block;margin-top:4px">Проверьте «Входящие» и «Спам». Нужен именно <b>6-значный код</b> из письма.<br>💡 Если пришло первое сервисное письмо с синей кнопкой <b>[Activate Form]</b> — нажмите её один раз для активации получения кодов.</small></span>';
 
   if (window.location.protocol === 'file:') {
     noticeHtml += '<div style="margin-top:8px;font-size:0.75rem;color:#b45309;background:#fef3c7;padding:6px 10px;border-radius:6px">⚠️ При открытии локального файла (file://) браузер блокирует сетевую отправку писем. Вы можете воспользоваться аварийным мастер-ключом!</div>';
