@@ -1,3 +1,4 @@
 *.json
+!manifest.json
 dump2gis.html
 *whatsapp*.html

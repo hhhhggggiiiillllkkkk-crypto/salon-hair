@@ -2,7 +2,13 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/jpeg" href="images/1.jpg">
+<link rel="apple-touch-icon" href="images/1.jpg">
 <!-- Защита от Clickjacking / UI Redressing -->
 <style id="antiClickjack">body{display:none !important;}</style>
 <script>
@@ -462,12 +468,12 @@ header.sticky{padding-top:env(safe-area-inset-top, 0px)}
 
 /* Мобильный Bottom-Sheet для админки и модалки заявки */
 @media (max-width: 640px){
-  .adm-modal-overlay{align-items:flex-end;padding:0;overflow-y:hidden}
-  .adm-card{border-radius:20px 20px 0 0;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none;margin:0;display:flex;flex-direction:column;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1)}
+  .adm-modal-overlay{align-items:flex-end;padding:0;overflow-y:hidden;overscroll-behavior-y:contain}
+  .adm-card{border-radius:20px 20px 0 0;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none;margin:0;display:flex;flex-direction:column;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1);overscroll-behavior-y:contain}
   .adm-header{flex-shrink:0;padding:14px 16px}
-  .adm-body{max-height:calc(90vh - 70px);max-height:calc(90dvh - 70px);-webkit-overflow-scrolling:touch;padding:18px 16px calc(18px + env(safe-area-inset-bottom, 0px));overflow-y:auto;flex:1 1 auto}
-  #modal{align-items:flex-end!important;padding:0!important}
-  #modal > .card{border-radius:20px 20px 0 0!important;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 18px calc(20px + env(safe-area-inset-bottom, 0px))!important;margin:0!important;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1)}
+  .adm-body{max-height:calc(90vh - 70px);max-height:calc(90dvh - 70px);-webkit-overflow-scrolling:touch;padding:18px 16px calc(18px + env(safe-area-inset-bottom, 0px));overflow-y:auto;flex:1 1 auto;overscroll-behavior-y:contain}
+  #modal{align-items:flex-end!important;padding:0!important;overscroll-behavior-y:contain}
+  #modal > .card{border-radius:20px 20px 0 0!important;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 18px calc(20px + env(safe-area-inset-bottom, 0px))!important;margin:0!important;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1);overscroll-behavior-y:contain}
   .adm-toast{left:16px!important;right:16px!important;bottom:calc(4.75rem + env(safe-area-inset-bottom, 0px))!important;text-align:center;justify-content:center}
 }
 
@@ -518,6 +524,46 @@ function sanitizeImageUrl(url) {
   }
   return '';
 }
+
+// Поддержка системной кнопки "Назад" и жестов свайпа на Android
+let isModalHistoryActive = false;
+
+function pushModalState(type) {
+  if (!isModalHistoryActive) {
+    try {
+      history.pushState({ modalType: type }, '');
+      isModalHistoryActive = true;
+    } catch (e) {}
+  }
+}
+
+function popModalStateIfNeeded() {
+  if (isModalHistoryActive) {
+    isModalHistoryActive = false;
+    try {
+      if (history.state && history.state.modalType) {
+        history.back();
+      }
+    } catch (e) {}
+  }
+}
+
+window.addEventListener('popstate', (e) => {
+  isModalHistoryActive = false;
+  const admOverlay = document.getElementById('adm-overlay');
+  if (admOverlay && !admOverlay.hidden) {
+    closeAdminModal(false);
+  }
+  const bookingModal = document.getElementById('modal');
+  if (bookingModal && !bookingModal.hidden) {
+    if (typeof window.closeBookingModal === 'function') {
+      window.closeBookingModal(false);
+    } else {
+      bookingModal.hidden = true;
+      document.body.style.overflow = '';
+    }
+  }
+});
 
 // ===== НАСТРОЙКИ СВЯЗИ И ГРАФИКА =====
 // Мессенджер MAX:
@@ -745,16 +791,19 @@ document.addEventListener('DOMContentLoaded', () => {
     prev = document.activeElement;
     m.hidden = false;
     document.body.style.overflow = 'hidden';
+    pushModalState('booking');
     $('#x').focus();
   };
-  const closeM = () => {
+  const closeM = (syncHistory = true) => {
     m.hidden = true;
     const adm = document.getElementById('adm-overlay');
     if (!adm || adm.hidden) {
       document.body.style.overflow = '';
     }
+    if (syncHistory) popModalStateIfNeeded();
     if (prev) prev.focus();
   };
+  window.closeBookingModal = closeM;
   m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-x]')) closeM(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) closeM(); });
 
@@ -1289,17 +1338,19 @@ function openAdmin() {
   if (!overlay) return;
   overlay.hidden = false;
   document.body.style.overflow = 'hidden';
+  pushModalState('admin');
   // Всегда открываем окно входа с предустановленным логином
   showLoginCard();
 }
 
-function closeAdminModal() {
+function closeAdminModal(syncHistory = true) {
   const overlay = document.getElementById('adm-overlay');
   if (overlay) overlay.hidden = true;
   const bookingModal = document.getElementById('modal');
   if (!bookingModal || bookingModal.hidden) {
     document.body.style.overflow = '';
   }
+  if (syncHistory) popModalStateIfNeeded();
   // Сбрасываем сессию, чтобы при следующем открытии СНОВА требовался пароль
   localStorage.removeItem(DH_SESSION_KEY);
 }
