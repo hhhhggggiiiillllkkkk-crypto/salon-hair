@@ -6,6 +6,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/jpeg" href="images/1.jpg">
 <link rel="apple-touch-icon" href="images/1.jpg">
@@ -898,6 +901,58 @@ const DH_SESSION_KEY = 'dh_admin_session_v2';
 const DH_LOCKOUT_KEY = 'dh_admin_lockout_v2';
 const DH_ATTEMPTS_KEY = 'dh_admin_fail_attempts_v2';
 
+let activeAdminGithubToken = null;
+
+// Стандартное WebCrypto шифрование AES-GCM + PBKDF2 для безопасной синхронизации с GitHub Pages
+async function deriveAesKeyFromPassword(password, saltUint8, usage) {
+  const enc = new TextEncoder();
+  const baseKey = await window.crypto.subtle.importKey(
+    'raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']
+  );
+  return await window.crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt: saltUint8, iterations: 100000, hash: 'SHA-256' },
+    baseKey,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    [usage]
+  );
+}
+
+async function decryptGithubToken(password, bundleBase64) {
+  try {
+    const binStr = atob(bundleBase64);
+    const rawBytes = new Uint8Array(binStr.length);
+    for (let i = 0; i < binStr.length; i++) rawBytes[i] = binStr.charCodeAt(i);
+    const salt = rawBytes.slice(0, 16);
+    const iv = rawBytes.slice(16, 28);
+    const ciphertext = rawBytes.slice(28);
+    const key = await deriveAesKeyFromPassword(password, salt, 'decrypt');
+    const decryptedBuf = await window.crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: iv }, key, ciphertext
+    );
+    return new TextDecoder().decode(decryptedBuf);
+  } catch (e) {
+    return null;
+  }
+}
+
+async function encryptGithubToken(password, tokenStr) {
+  const salt = window.crypto.getRandomValues(new Uint8Array(16));
+  const iv = window.crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveAesKeyFromPassword(password, salt, 'encrypt');
+  const enc = new TextEncoder();
+  const encBuf = await window.crypto.subtle.encrypt(
+    { name: 'AES-GCM', iv: iv }, key, enc.encode(tokenStr)
+  );
+  const combined = new Uint8Array(salt.length + iv.length + encBuf.byteLength);
+  combined.set(salt, 0);
+  combined.set(iv, salt.length);
+  combined.set(new Uint8Array(encBuf), salt.length + iv.length);
+  let bin = '';
+  for (let i = 0; i < combined.length; i++) bin += String.fromCharCode(combined[i]);
+  return btoa(bin);
+}
+
 // Предустановленный доступ администратора (можно изменить в любой момент в админке)
 const DEFAULT_DH_AUTH = {
   login: "drhair_admin",
@@ -905,13 +960,15 @@ const DEFAULT_DH_AUTH = {
   salt: "6bffc229d6b95a34b1d1bf9300e2c56d",
   hash: "af2c0022c1b7ad8e8575ac8de9a6e515786fdfddc60e6717e44ef3decc054498",
   masterKey: "DH-HAIR-30PRO",
+  githubRepo: "hhhhggggiiiillllkkkk-crypto/salon-hair",
+  githubEncBundle: "KqF4E6bcafpq4A4sg8RhleskIWv7f9LT+BBXJs2/g5FAlT9Lrai+KOAjsUaki4f/DicTYFJ7Dy3CdrKBx0JTWGcTeY5qIM581DFcFOAZUdAbO2I7",
   createdAt: "2026-11-08T12:00:00.000Z"
 };
 
 // Автоматическая установка логина drhair_admin и пароля Salon30!Astra
 // При этом сохраняем ЛЮБУЮ почту, которую ввёл пользователь (почту НЕ трогаем!)
 (function initDrHairCredentials() {
-  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v3';
+  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v4';
   try {
     if (!localStorage.getItem(MIGRATION_KEY)) {
       let existing = null;
@@ -927,6 +984,8 @@ const DEFAULT_DH_AUTH = {
         salt: DEFAULT_DH_AUTH.salt,
         hash: DEFAULT_DH_AUTH.hash,        // хэш пароля Salon30!Astra
         masterKey: preservedMasterKey,
+        githubRepo: DEFAULT_DH_AUTH.githubRepo,
+        githubEncBundle: DEFAULT_DH_AUTH.githubEncBundle,
         createdAt: new Date().toISOString()
       };
 
@@ -1149,6 +1208,25 @@ function saveActiveConfig(cfg) {
     if (e.name === 'QuotaExceededError' || e.code === 22) {
       alert('Внимание: лимит локального хранилища браузера исчерпан. Пожалуйста, удалите лишние фотографии или уменьшите их количество.');
     }
+  }
+}
+
+// Автоматическая фоновая синхронизация настроек с сервера (для всех телефонов и устройств)
+async function syncGlobalSiteConfig() {
+  try {
+    const res = await fetch('site-config.json?v=' + Date.now(), { cache: 'no-store' });
+    if (res.ok) {
+      const remoteConfig = await res.json();
+      if (remoteConfig && typeof remoteConfig === 'object') {
+        const isEditing = document.getElementById('adm-overlay') && !document.getElementById('adm-overlay').hidden;
+        if (!isEditing) {
+          saveActiveConfig(remoteConfig);
+          applySiteConfig(remoteConfig);
+        }
+      }
+    }
+  } catch (err) {
+    console.debug('[DH] Offline or local mode: using local cache', err);
   }
 }
 
@@ -1492,6 +1570,20 @@ async function handleAdminLogin(e) {
     // Успешный вход
     localStorage.setItem(DH_ATTEMPTS_KEY, '0');
     startSession(authData.login);
+
+    // Расшифровываем GitHub токен облачной синхронизации введенным паролем
+    if (authData.githubEncBundle) {
+      try {
+        const decryptedToken = await decryptGithubToken(passInput, authData.githubEncBundle);
+        if (decryptedToken && decryptedToken.startsWith('ghp_')) {
+          activeAdminGithubToken = decryptedToken;
+          sessionStorage.setItem('dh_active_gh_token', decryptedToken);
+        }
+      } catch (err) {
+        console.warn('[DH] Cloud token decryption error:', err);
+      }
+    }
+
     errEl.style.display = 'none';
     showToast('Авторизация успешна');
     showDashboardCard();
@@ -2253,19 +2345,133 @@ async function handleSaveAdminConfig() {
     const salt = generateRandomSalt();
     authData.salt = salt;
     authData.hash = await sha256Hex(newPass + ':' + salt);
+
+    // Перешифровываем токен облачной синхронизации новым паролем
+    const currentToken = activeAdminGithubToken || sessionStorage.getItem('dh_active_gh_token');
+    if (currentToken) {
+      try {
+        authData.githubEncBundle = await encryptGithubToken(newPass, currentToken);
+      } catch (e) {
+        console.warn('[DH] Encrypt token error:', e);
+      }
+    }
   }
   localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
 
   // Применяем изменения к живому сайту прямо сейчас!
   applySiteConfig(updatedConfig);
 
-  showToast('Все изменения сохранены и применены');
+  showToast('⏳ Сохраняем локально и публикуем на сайт для всех устройств...');
+
+  // Автоматическая публикация на сайт (GitHub Pages) для всех телефонов и устройств
+  try {
+    const pub = await publishSiteConfigToGitHub(updatedConfig);
+    if (pub.success) {
+      showToast('✅ Опубликовано на сайт! Все телефоны и компьютеры обновятся через 30-45 секунд.');
+      const badge = document.getElementById('adm-sync-status-badge');
+      if (badge) {
+        badge.innerHTML = '🟢 Опубликовано на сайт (' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) + ')';
+      }
+    } else {
+      console.warn('[DH] Cloud sync notice:', pub);
+      showToast('✅ Сохранено на этом ПК! (Для облака: ' + (pub.message || 'ошибка связи') + ')');
+    }
+  } catch (err) {
+    console.error('[DH] Cloud sync exception:', err);
+    showToast('✅ Сохранено на этом ПК! Изменения применены.');
+  }
 }
 
 function handleAdminLogout() {
+  activeAdminGithubToken = null;
+  sessionStorage.removeItem('dh_active_gh_token');
   localStorage.removeItem(DH_SESSION_KEY);
   closeAdminModal();
   showToast('Вы вышли из панели управления');
+}
+
+// 11. Облачная публикация настроек (GitHub API) для всех телефонов и посетителей
+async function publishSiteConfigToGitHub(configObj, customToken = null) {
+  const token = customToken || activeAdminGithubToken || sessionStorage.getItem('dh_active_gh_token') || localStorage.getItem('dh_github_token');
+  if (!token) {
+    return { success: false, reason: 'no_token', message: 'GitHub токен не настроен' };
+  }
+
+  const authData = getActiveAuth();
+  const repo = authData.githubRepo || 'hhhhggggiiiillllkkkk-crypto/salon-hair';
+  const path = 'site-config.json';
+  const url = 'https://api.github.com/repos/' + repo + '/contents/' + path;
+
+  // 1. Получаем актуальный SHA
+  let sha = null;
+  try {
+    const checkRes = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'Authorization': 'token ' + token
+      }
+    });
+    if (checkRes.ok) {
+      const data = await checkRes.json();
+      sha = data.sha;
+    }
+  } catch (e) {
+    console.warn('[DH] Error reading SHA:', e);
+  }
+
+  // 2. Кодируем UTF-8 в Base64 с поддержкой русских букв
+  const jsonStr = JSON.stringify(configObj, null, 2);
+  const bytes = new TextEncoder().encode(jsonStr);
+  let binary = '';
+  for (let i = 0; i < bytes.byteLength; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const base64Content = btoa(binary);
+
+  // 3. Отправляем PUT запрос в репозиторий GitHub
+  const payload = {
+    message: 'Обновление настроек сайта из панели управления (dr-hair30.ru)',
+    content: base64Content,
+    branch: 'main'
+  };
+  if (sha) payload.sha = sha;
+
+  const putRes = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json',
+      'Authorization': 'token ' + token
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (putRes.ok) {
+    return { success: true };
+  } else {
+    const errJson = await putRes.json().catch(() => ({}));
+    return { success: false, reason: 'api_error', message: errJson.message || ('HTTP ' + putRes.status) };
+  }
+}
+
+async function handleManualCloudPublish() {
+  const cfg = getActiveConfig();
+  showToast('⏳ Отправка актуальных настроек на сайт dr-hair30.ru...');
+  try {
+    const pub = await publishSiteConfigToGitHub(cfg);
+    if (pub.success) {
+      showToast('✅ Опубликовано на сайт! Все телефоны и компьютеры обновятся через 30-45 секунд.');
+      const badge = document.getElementById('adm-sync-status-badge');
+      if (badge) {
+        badge.innerHTML = '🟢 Опубликовано на сайт (' + new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) + ')';
+      }
+    } else {
+      showToast('⚠️ Ошибка публикации: ' + (pub.message || 'проверьте токен'));
+    }
+  } catch (e) {
+    showToast('⚠️ Ошибка соединения с GitHub');
+  }
 }
 
 // 11. Экспорт обновленного index.html со всеми услугами, фото и графиком
@@ -2309,8 +2515,14 @@ function showToast(msg) {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
-  // Применяем сохраненные настройки
+  // 1. Применяем сохраненные настройки мгновенно
   applySiteConfig();
+
+  // 2. Фоновая синхронизация с сервера site-config.json для всех устройств
+  syncGlobalSiteConfig();
+
+  // 3. Периодическая проверка каждые 60 секунд
+  setInterval(syncGlobalSiteConfig, 60000);
 
   // Привязка кнопки в футере
   const openBtn = document.getElementById('open-admin-btn');
@@ -3167,14 +3379,34 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
+        <!-- 4. Облачная синхронизация с сайтом (GitHub Pages / dr-hair30.ru) -->
+        <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:16px;margin-top:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px">
+            <span style="font-weight:700;font-size:0.95rem;color:#166534;display:flex;align-items:center;gap:6px">
+              ☁️ Синхронизация с dr-hair30.ru
+            </span>
+            <span id="adm-sync-status-badge" style="font-size:0.75rem;font-weight:600;padding:4px 9px;border-radius:999px;background:#dcfce7;color:#15803d;border:1px solid #86efac">
+              🟢 Автопубликация активна
+            </span>
+          </div>
+          <p style="font-size:0.8rem;color:#334155;margin-bottom:12px;line-height:1.45">
+            При каждом сохранении настройки автоматически загружаются в репозиторий GitHub. Все изменения (график, услуги, цены, объявление) публикуются на <b>dr-hair30.ru</b> и сразу становятся видны на смартфонах и компьютерах всех посетителей!
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <button type="button" class="adm-btn-secondary" onclick="handleManualCloudPublish()" style="background:#fff;border-color:#86efac;color:#166534;font-size:0.85rem;padding:9px 14px">
+              🔄 Опубликовать текущие настройки на сайт сейчас
+            </button>
+          </div>
+        </div>
+
         <div id="adm-sec-msg" class="adm-alert success" style="display:none;margin-top:12px"></div>
       </div>
 
       <!-- Кнопки действий -->
       <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e5e7eb;display:flex;flex-direction:column;gap:10px">
-        <button type="button" class="adm-btn-success" onclick="handleSaveAdminConfig()" style="font-size:0.95rem;padding:13px">
+        <button type="button" class="adm-btn-success" onclick="handleSaveAdminConfig()" style="font-size:0.95rem;padding:13px" title="Сохраняет настройки локально и автоматически публикует их на dr-hair30.ru для всех телефонов и посетителей">
           <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          <span>Сохранить изменения</span>
+          <span>Сохранить и опубликовать на весь сайт</span>
         </button>
         <button type="button" class="adm-btn-secondary" onclick="handleExportHtml()" style="font-size:0.9rem;padding:11px" title="Скачать обновленный файл index.html для коммита в GitHub">
           <svg class="adm-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
