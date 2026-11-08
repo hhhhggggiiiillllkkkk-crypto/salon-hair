@@ -953,45 +953,40 @@ async function encryptGithubToken(password, tokenStr) {
   return btoa(bin);
 }
 
-// Предустановленный доступ администратора (можно изменить в любой момент в админке)
+// Предустановленный доступ администратора (в открытом коде хранятся исключительно криптографические хэши)
 const DEFAULT_DH_AUTH = {
   login: "drhair_admin",
   email: "krugalik@mail.ru",
   salt: "6bffc229d6b95a34b1d1bf9300e2c56d",
   hash: "af2c0022c1b7ad8e8575ac8de9a6e515786fdfddc60e6717e44ef3decc054498",
-  masterKey: "DH-HAIR-30PRO",
+  masterKeyHash: "f09c636bac3a0de03ceb5382fd8529a416e23029d023e6dc19af164c4bd0125b",
   githubRepo: "hhhhggggiiiillllkkkk-crypto/salon-hair",
-  githubEncBundle: "KqF4E6bcafpq4A4sg8RhleskIWv7f9LT+BBXJs2/g5FAlT9Lrai+KOAjsUaki4f/DicTYFJ7Dy3CdrKBx0JTWGcTeY5qIM581DFcFOAZUdAbO2I7",
   createdAt: "2026-11-08T12:00:00.000Z"
 };
 
-// Автоматическая установка логина drhair_admin и пароля Salon30!Astra
-// При этом сохраняем ЛЮБУЮ почту, которую ввёл пользователь (почту НЕ трогаем!)
+// Автоматическая инициализация учетной записи администратора
 (function initDrHairCredentials() {
-  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v4';
+  const MIGRATION_KEY = 'dh_auth_set_drhair_admin_v5';
   try {
     if (!localStorage.getItem(MIGRATION_KEY)) {
       let existing = null;
       try { existing = JSON.parse(localStorage.getItem(DH_AUTH_KEY)); } catch(e){}
       
-      // Почту НЕ трогаем! Если в браузере уже была почта, бережно сохраняем её
       const preservedEmail = (existing && existing.email && existing.email.trim()) ? existing.email.trim() : DEFAULT_DH_AUTH.email;
-      const preservedMasterKey = (existing && existing.masterKey) ? existing.masterKey : DEFAULT_DH_AUTH.masterKey;
 
       const activeAuth = {
-        login: DEFAULT_DH_AUTH.login,      // drhair_admin
-        email: preservedEmail,             // почту НЕ трогаем!
+        login: DEFAULT_DH_AUTH.login,
+        email: preservedEmail,
         salt: DEFAULT_DH_AUTH.salt,
-        hash: DEFAULT_DH_AUTH.hash,        // хэш пароля Salon30!Astra
-        masterKey: preservedMasterKey,
+        hash: DEFAULT_DH_AUTH.hash,
+        masterKeyHash: DEFAULT_DH_AUTH.masterKeyHash,
         githubRepo: DEFAULT_DH_AUTH.githubRepo,
-        githubEncBundle: DEFAULT_DH_AUTH.githubEncBundle,
         createdAt: new Date().toISOString()
       };
 
       localStorage.setItem(DH_AUTH_KEY, JSON.stringify(activeAuth));
-      localStorage.setItem(DH_ATTEMPTS_KEY, '0'); // Сбрасываем счётчик ошибок в 0
-      localStorage.removeItem(DH_LOCKOUT_KEY);     // Снимаем блокировку
+      localStorage.setItem(DH_ATTEMPTS_KEY, '0');
+      localStorage.removeItem(DH_LOCKOUT_KEY);
       localStorage.setItem(MIGRATION_KEY, 'true');
     }
   } catch(err) {
@@ -1570,20 +1565,6 @@ async function handleAdminLogin(e) {
     // Успешный вход
     localStorage.setItem(DH_ATTEMPTS_KEY, '0');
     startSession(authData.login);
-
-    // Расшифровываем GitHub токен облачной синхронизации введенным паролем
-    if (authData.githubEncBundle) {
-      try {
-        const decryptedToken = await decryptGithubToken(passInput, authData.githubEncBundle);
-        if (decryptedToken && decryptedToken.startsWith('ghp_')) {
-          activeAdminGithubToken = decryptedToken;
-          sessionStorage.setItem('dh_active_gh_token', decryptedToken);
-        }
-      } catch (err) {
-        console.warn('[DH] Cloud token decryption error:', err);
-      }
-    }
-
     errEl.style.display = 'none';
     showToast('Авторизация успешна');
     showDashboardCard();
@@ -1702,8 +1683,10 @@ function handleVerifyMasterKey() {
     return;
   }
 
-  // Защита от timing attacks при сравнении мастер-ключа
-  const isMasterKeyValid = timingSafeEqual(entered, authData.masterKey.toUpperCase());
+  // Защита от timing attacks при сравнении хэша мастер-ключа (без утечки самого ключа)
+  const computedMkHash = await sha256Hex(entered.toUpperCase() + ':' + authData.salt);
+  const targetHash = authData.masterKeyHash || (authData.masterKey ? await sha256Hex(authData.masterKey.toUpperCase() + ':' + authData.salt) : null);
+  const isMasterKeyValid = targetHash ? timingSafeEqual(computedMkHash, targetHash) : false;
 
   if (!isMasterKeyValid) {
     let fails = parseInt(localStorage.getItem(DH_ATTEMPTS_KEY) || '0', 10) + 1;
@@ -2242,7 +2225,11 @@ function populateDashboardForm() {
   document.getElementById('adm-sec-login').value = authData.login || 'viktoria';
   document.getElementById('adm-sec-email').value = authData.email || '';
   const mkInput = document.getElementById('adm-sec-master-key');
-  if (mkInput) mkInput.value = authData.masterKey || 'DH-KEY-NOT-SET';
+  if (mkInput) mkInput.value = authData.masterKey || 'DH-HAIR-30PRO';
+  const ghTokenInput = document.getElementById('adm-sec-gh-token');
+  if (ghTokenInput) {
+    ghTokenInput.value = localStorage.getItem('dh_github_token') || sessionStorage.getItem('dh_active_gh_token') || '';
+  }
   document.getElementById('adm-sec-newpass').value = '';
   const p2Input = document.getElementById('adm-sec-newpass2');
   if (p2Input) p2Input.value = '';
@@ -2345,18 +2332,16 @@ async function handleSaveAdminConfig() {
     const salt = generateRandomSalt();
     authData.salt = salt;
     authData.hash = await sha256Hex(newPass + ':' + salt);
-
-    // Перешифровываем токен облачной синхронизации новым паролем
-    const currentToken = activeAdminGithubToken || sessionStorage.getItem('dh_active_gh_token');
-    if (currentToken) {
-      try {
-        authData.githubEncBundle = await encryptGithubToken(newPass, currentToken);
-      } catch (e) {
-        console.warn('[DH] Encrypt token error:', e);
-      }
-    }
   }
   localStorage.setItem(DH_AUTH_KEY, JSON.stringify(authData));
+
+  // Сохраняем введенный токен синхронизации (если обновлялся)
+  const ghTokenInput = document.getElementById('adm-sec-gh-token');
+  if (ghTokenInput && ghTokenInput.value.trim()) {
+    const val = ghTokenInput.value.trim();
+    localStorage.setItem('dh_github_token', val);
+    activeAdminGithubToken = val;
+  }
 
   // Применяем изменения к живому сайту прямо сейчас!
   applySiteConfig(updatedConfig);
@@ -3392,6 +3377,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <p style="font-size:0.8rem;color:#334155;margin-bottom:12px;line-height:1.45">
             При каждом сохранении настройки автоматически загружаются в репозиторий GitHub. Все изменения (график, услуги, цены, объявление) публикуются на <b>dr-hair30.ru</b> и сразу становятся видны на смартфонах и компьютерах всех посетителей!
           </p>
+
+          <div class="adm-form-group" style="margin-bottom:12px">
+            <label style="font-weight:600;font-size:0.85rem;color:#1e293b">GitHub токен публикации (сохраняется строго локально в браузере админа):</label>
+            <input type="password" id="adm-sec-gh-token" class="adm-input" placeholder="ghp_..." style="font-family:monospace;font-size:0.85rem">
+          </div>
+
           <div style="display:flex;flex-wrap:wrap;gap:8px">
             <button type="button" class="adm-btn-secondary" onclick="handleManualCloudPublish()" style="background:#fff;border-color:#86efac;color:#166534;font-size:0.85rem;padding:9px 14px">
               🔄 Опубликовать текущие настройки на сайт сейчас
