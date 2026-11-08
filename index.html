@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <!-- Защита от Clickjacking / UI Redressing -->
 <style id="antiClickjack">body{display:none !important;}</style>
 <script>
@@ -119,17 +119,24 @@
   background: rgba(255, 255, 255, 0.12);
   border: none;
   color: #ffffff;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1;
   transition: all 0.2s;
+  padding: 0;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
-.adm-close-btn:hover {
+.adm-close-btn:hover,
+.adm-close-btn:focus-visible {
   background: rgba(255, 255, 255, 0.25);
   transform: rotate(90deg);
 }
@@ -148,10 +155,17 @@
   border-radius: 12px;
   margin-bottom: 20px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.adm-tabs::-webkit-scrollbar {
+  display: none;
 }
 .adm-tab-btn {
-  flex: 1;
-  padding: 8px 10px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 10px 14px;
+  min-height: 42px;
   border-radius: 9px;
   border: none;
   background: transparent;
@@ -160,7 +174,6 @@
   color: #6b7280;
   cursor: pointer;
   transition: all 0.2s;
-  white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -338,8 +351,12 @@
 <style>
 /* Фирменные цвета и шрифты */
 :root{--bg:#fff;--soft:#fdf2fb;--card:#fff;--ink:#2b2430;--mute:#6b6370;--em:#b9479f;--em-d:#99347f;--pink:#e48fd8;--line:#f0dcec;--dark:#2b2430;--fh:'Playfair Display',Georgia,serif;--fb:'Inter',system-ui,sans-serif;--r:1.1rem}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--fb);overflow-x:hidden;line-height:1.6}
+html{scroll-behavior:smooth;overflow-x:hidden;overflow-x:clip;scroll-padding-top:4.5rem}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);overflow-x:hidden;overflow-x:clip;line-height:1.6;max-width:100%;padding-bottom:calc(6rem + env(safe-area-inset-bottom, 0px)) !important}
+* { -webkit-tap-highlight-color: transparent; }
+.btn:active, .adm-btn-primary:active, .adm-btn-secondary:active, .adm-btn-success:active, .channel-btn:active, .adm-tab-btn:active, .svc:active, #back-to-top:active {
+  transform: scale(0.97);
+}
 h1,h2,h3,.fh{font-family:var(--fh)}
 .mu{color:var(--mute)}
 .sec{max-width:64rem;margin:0 auto;padding:3rem 1rem}
@@ -351,11 +368,13 @@ h1,h2,h3,.fh{font-family:var(--fh)}
 .btn.o{background:transparent;color:var(--em);box-shadow:inset 0 0 0 2px var(--em)}
 .btn.o:hover{background:#fbe6f7}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
-.card{background:var(--card);border-radius:var(--r);padding:1.1rem;border:2px solid var(--line);transition:border-color .25s,background .25s,transform .25s}
-.svc{cursor:pointer;display:flex;flex-direction:column}
+.card{background:var(--card);border-radius:var(--r);padding:1.1rem;border:2px solid var(--line);transition:border-color .25s,background .25s,transform .25s,box-shadow .25s}
+.svc{cursor:pointer;display:flex;flex-direction:column;position:relative}
 .svc .pick{margin-top:auto;align-self:flex-start}
+.svc .flex-wrap .pick{margin-top:0;align-self:center}
 .svc:hover{transform:translateY(-3px);border-color:var(--pink)}
-.svc.sel{border-color:var(--em);background:var(--soft)}
+.svc.sel{border-color:var(--em);background:var(--soft);box-shadow:0 4px 20px rgba(185,71,159,0.18),0 0 0 1px var(--em)}
+.svc.sel::after{content:'✓';position:absolute;top:10px;right:10px;width:26px;height:26px;background:var(--em);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;line-height:1;box-shadow:0 2px 8px rgba(185,71,159,0.35);border:2px solid #fff;z-index:5;pointer-events:none}
 .svc.sel .pick{background:var(--dark);color:#fff}
 .im{overflow:hidden;border-radius:.8rem;aspect-ratio:4/3;background:#f6e6f3}
 .im>*,.logo>*{width:100%;height:100%;object-fit:cover}
@@ -365,6 +384,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .card-media.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 .card-media.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem}
 .card-media.grid-4{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:.5rem}
+@media (max-width: 639px){
+  .card-media{height:180px}
+  .card-media.grid-2{gap:4px}
+  .card-media.grid-3{grid-template-columns:1.3fr 1fr 1fr;gap:4px}
+  .card-media.grid-4{gap:4px}
+}
 .card-media .im{overflow:hidden;border-radius:.8rem;background:#f6e6f3;width:100%;height:100%;aspect-ratio:auto !important}
 .card-media .im img{width:100%;height:100%;object-fit:cover}
 .card.svc h3{min-height:2.7rem;line-height:1.35}
@@ -376,12 +401,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 @media(min-width:768px){.g{grid-auto-rows:13rem}}
 .g .im{aspect-ratio:auto}
 .f{width:100%;padding:.85rem 1rem;border-radius:.8rem;border:1.5px solid var(--line);background:#fff;font-size:1rem}
-.chip{background:#fbe6f7;color:var(--em-d);border-radius:999px;padding:.4rem .9rem;font-size:.85rem;font-weight:600;margin:.2rem;border:0;cursor:pointer}
+.chip{background:#fbe6f7;color:var(--em-d);border-radius:999px;min-height:40px;padding:0.5rem 0.9rem;font-size:.85rem;font-weight:600;margin:.2rem;border:0;cursor:pointer;display:inline-flex;align-items:center}
 .chip:hover{background:#f6d3ef}
 .dot{width:.6rem;height:.6rem;border-radius:50%;background:#8b8f8c;display:inline-block}
 .dot.on{background:#22a35a;animation:p 2s infinite}
 @keyframes p{0%{box-shadow:0 0 0 0 rgba(34,163,90,.6)}70%,100%{box-shadow:0 0 0 .5rem transparent}}
+.bar{bottom:calc(0.75rem + env(safe-area-inset-bottom, 0px)) !important;max-width:calc(100vw - 12px) !important}
 .bar a{padding:.5rem .9rem;font-size:.85rem}
+@media (max-width: 420px) {
+  .bar{gap:4px !important;padding:4px !important}
+  .bar a{padding:0.45rem 0.6rem !important;font-size:0.75rem !important;white-space:nowrap !important;flex:1 1 auto;text-align:center}
+}
 
 /* Кнопки соцсетей: ТОЛЬКО цветной контур и цветной текст, прозрачный фон */
 .soc a{display:inline-flex;padding:.45rem 1rem;border-radius:999px;background:transparent!important;font-weight:600;font-size:.9rem;transition:border-color .25s,color .25s,transform .25s,box-shadow .25s;text-decoration:none}
@@ -398,8 +428,48 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .soc a.soc-in:hover{box-shadow:0 0 10px rgba(225,48,108,.4);color:#f472b6!important}
 
 /* Переключатель способа отправки */
-.channel-btn{transition:all .2s ease}
+.channel-btn{min-height:48px;padding:12px 10px;transition:all .2s ease}
 .channel-btn:hover{transform:translateY(-1px)}
+
+/* Шапка на мобильных */
+header.sticky{padding-top:env(safe-area-inset-top, 0px)}
+@media (max-width: 420px){
+  header.sticky{padding-top:env(safe-area-inset-top, 0px)}
+  #st{max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:inline-block;vertical-align:bottom}
+  header .logo,header.sticky .logo{width:36px !important;height:36px !important}
+  #hb{padding:0.4rem 0.75rem !important;font-size:0.75rem !important}
+}
+
+/* Защита от автозума в iOS Safari */
+@media (max-width: 768px){
+  .f, .adm-input, .adm-textarea, .adm-select, .adm-day-hours select, select, input, textarea{
+    font-size:16px !important;
+  }
+}
+
+/* Плавающая кнопка «Наверх» */
+#back-to-top{position:fixed;right:calc(1rem + env(safe-area-inset-right, 0px));bottom:calc(4.75rem + env(safe-area-inset-bottom, 0px));z-index:40;width:42px;height:42px;border-radius:50%;background:#ffffff;color:var(--em-d,#99347f);border:1.5px solid var(--line,#f0dcec);box-shadow:0 4px 14px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .2s ease,color .2s ease,box-shadow .2s ease;padding:0}
+#back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+#back-to-top:hover{background:var(--soft,#fdf2fb);color:var(--em,#b9479f);box-shadow:0 6px 18px rgba(185,71,159,0.2)}
+#back-to-top:active{transform:scale(0.92)}
+
+/* Кнопка закрытия модалки заявки (44x44px) */
+.modal-close-btn{position:absolute;top:12px;right:12px;width:44px;height:44px;min-width:44px;min-height:44px;border-radius:50%;border:1px solid rgba(0,0,0,0.08);background:#f3f4f6;color:#4b5563;display:inline-flex;align-items:center;justify-content:center;font-size:20px;line-height:1;cursor:pointer;transition:all .2s;padding:0;z-index:10;-webkit-tap-highlight-color:transparent}
+.modal-close-btn:hover,.modal-close-btn:focus-visible{background:#e5e7eb;color:#111827;transform:rotate(90deg)}
+
+/* Анимация плавного выезда снизу */
+@keyframes admSlideUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+
+/* Мобильный Bottom-Sheet для админки и модалки заявки */
+@media (max-width: 640px){
+  .adm-modal-overlay{align-items:flex-end;padding:0;overflow-y:hidden}
+  .adm-card{border-radius:20px 20px 0 0;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none;margin:0;display:flex;flex-direction:column;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1)}
+  .adm-header{flex-shrink:0;padding:14px 16px}
+  .adm-body{max-height:calc(90vh - 70px);max-height:calc(90dvh - 70px);-webkit-overflow-scrolling:touch;padding:18px 16px calc(18px + env(safe-area-inset-bottom, 0px));overflow-y:auto;flex:1 1 auto}
+  #modal{align-items:flex-end!important;padding:0!important}
+  #modal > .card{border-radius:20px 20px 0 0!important;max-height:90vh;max-height:90dvh;width:100%!important;max-width:100%!important;border-bottom:none!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:24px 18px calc(20px + env(safe-area-inset-bottom, 0px))!important;margin:0!important;animation:admSlideUp .28s cubic-bezier(0.16,1,0.3,1)}
+  .adm-toast{left:16px!important;right:16px!important;bottom:calc(4.75rem + env(safe-area-inset-bottom, 0px))!important;text-align:center;justify-content:center}
+}
 
 #modal{display:flex}
 #modal[hidden]{display:none}
@@ -671,8 +741,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Модальное окно подтверждения
   const m = $('#modal'); let prev;
-  const openM = () => { prev = document.activeElement; m.hidden = false; $('#x').focus(); };
-  const closeM = () => { m.hidden = true; if (prev) prev.focus(); };
+  const openM = () => {
+    prev = document.activeElement;
+    m.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('#x').focus();
+  };
+  const closeM = () => {
+    m.hidden = true;
+    const adm = document.getElementById('adm-overlay');
+    if (!adm || adm.hidden) {
+      document.body.style.overflow = '';
+    }
+    if (prev) prev.focus();
+  };
   m.addEventListener('click', e => { if (e.target === m || e.target.closest('[data-x]')) closeM(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !m.hidden) closeM(); });
 
@@ -1206,6 +1288,7 @@ function openAdmin() {
   const overlay = document.getElementById('adm-overlay');
   if (!overlay) return;
   overlay.hidden = false;
+  document.body.style.overflow = 'hidden';
   // Всегда открываем окно входа с предустановленным логином
   showLoginCard();
 }
@@ -1213,6 +1296,10 @@ function openAdmin() {
 function closeAdminModal() {
   const overlay = document.getElementById('adm-overlay');
   if (overlay) overlay.hidden = true;
+  const bookingModal = document.getElementById('modal');
+  if (!bookingModal || bookingModal.hidden) {
+    document.body.style.overflow = '';
+  }
   // Сбрасываем сессию, чтобы при следующем открытии СНОВА требовался пароль
   localStorage.removeItem(DH_SESSION_KEY);
 }
@@ -1638,7 +1725,12 @@ function switchAdmTab(tabId, btn) {
   document.querySelectorAll('.adm-tab-content').forEach(c => c.style.display = 'none');
   document.querySelectorAll('.adm-tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById(tabId).style.display = 'block';
-  btn.classList.add('active');
+  if (btn) {
+    btn.classList.add('active');
+    if (btn.scrollIntoView) {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
 }
 
 
@@ -1685,9 +1777,13 @@ function renderServicesCatalog(servicesList) {
         ${renderCardMedia(s)}
         <h3 class="fh text-lg font-bold">${titleEsc}</h3>
         <p class="mt-1 mb-4 text-sm mu">${descEsc}</p>
-        <div class="flex items-center justify-between mt-auto pt-2 gap-2">
-          ${priceBadge}
-          <button type="button" class="btn pick" aria-pressed="${isChosen}">${isChosen ? '✓ Выбрано' : 'Выбрать услугу'}</button>
+        <div class="flex flex-wrap items-center justify-between gap-2 mt-auto pt-3 border-t border-[rgba(240,220,236,0.6)]">
+          <div class="svc-price-wrap flex-1 min-w-[120px]">
+            ${priceBadge}
+          </div>
+          <button type="button" class="btn s pick whitespace-nowrap shrink-0" aria-pressed="${isChosen}">
+            ${isChosen ? '✓ Выбрано' : 'Выбрать услугу'}
+          </button>
         </div>
       </article>
     `;
@@ -1827,7 +1923,7 @@ function renderAdminServicesUI() {
       return `
         <div style="position:relative;width:64px;height:64px;border-radius:8px;overflow:hidden;border:1.5px solid #d1d5db;background:#f3f4f6;flex-shrink:0">
           <img src="${safeSrc}" style="width:100%;height:100%;object-fit:cover" onerror="ph(this)">
-          <button type="button" onclick="handleRemoveServicePhoto('${safeId}', ${imgIdx})" style="position:absolute;top:2px;right:2px;background:rgba(220,38,38,0.9);color:#fff;border:none;border-radius:50%;width:18px;height:18px;font-size:11px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,0.3)" title="Удалить фото">✕</button>
+          <button type="button" onclick="handleRemoveServicePhoto('${safeId}', ${imgIdx})" style="position:absolute;top:2px;right:2px;background:rgba(220,38,38,0.9);color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:13px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,0.3)" title="Удалить фото">✕</button>
         </div>
       `;
     }).join('');
@@ -1840,9 +1936,9 @@ function renderAdminServicesUI() {
             <span style="font-weight:700;font-size:0.9rem;color:#111827">${safeTitle || 'Новая услуга'}</span>
           </div>
           <div style="display:flex;align-items:center;gap:6px">
-            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', -1)" style="padding:4px 7px;font-size:0.75rem" title="Поднять выше"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
-            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', 1)" style="padding:4px 7px;font-size:0.75rem" title="Опустить ниже"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
-            <button type="button" class="adm-btn-secondary" onclick="handleDeleteService('${safeId}')" style="padding:4px 7px;font-size:0.75rem;color:#dc2626" title="Удалить услугу"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', -1)" style="min-height:34px;min-width:34px;padding:6px 10px;font-size:0.75rem" title="Поднять выше"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+            <button type="button" class="adm-btn-secondary" onclick="handleMoveService('${safeId}', 1)" style="min-height:34px;min-width:34px;padding:6px 10px;font-size:0.75rem" title="Опустить ниже"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+            <button type="button" class="adm-btn-secondary" onclick="handleDeleteService('${safeId}')" style="min-height:34px;min-width:34px;padding:6px 10px;font-size:0.75rem;color:#dc2626" title="Удалить услугу"><svg class="adm-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
           </div>
         </div>
 
@@ -2173,13 +2269,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Горячая клавиша: Ctrl + Shift + A
+  // Закрытие админки по клику на фон (Backdrop Click Dismiss)
+  const admOverlay = document.getElementById('adm-overlay');
+  if (admOverlay) {
+    admOverlay.addEventListener('click', (e) => {
+      if (e.target === admOverlay) {
+        closeAdminModal();
+      }
+    });
+  }
+
+  // Горячие клавиши: Ctrl + Shift + A (открытие), Escape (закрытие админки)
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a' || e.key === 'Ф' || e.key === 'ф')) {
       e.preventDefault();
       openAdmin();
+    } else if (e.key === 'Escape') {
+      const overlay = document.getElementById('adm-overlay');
+      if (overlay && !overlay.hidden) {
+        closeAdminModal();
+      }
     }
   });
+
+  // Плавная кнопка «Наверх» при скролле > 400px
+  const btt = document.getElementById('back-to-top');
+  if (btt) {
+    let isBttVisible = false;
+    window.addEventListener('scroll', () => {
+      const shouldShow = window.scrollY > 400;
+      if (shouldShow !== isBttVisible) {
+        isBttVisible = shouldShow;
+        btt.classList.toggle('visible', isBttVisible);
+      }
+    }, { passive: true });
+    btt.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // Если в адресной строке #admin
   if (window.location.hash === '#admin') {
@@ -2338,7 +2465,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <!-- 9. Пилинг кожи головы и детокс системы (2 фото) -->
     <article class="card svc" data-s="Пилинг кожи головы и детокс системы">
       <div class="card-media grid-2">
-        <div class="im"><img src="images/peel_1.jpg" alt="Пилинг кожи головы до и после под трихоскопом" loading="lazy" style="object-fit:fill" onerror="ph(this)"></div>
+        <div class="im"><img src="images/peel_1.jpg" alt="Пилинг кожи головы до и после под трихоскопом" loading="lazy" style="object-fit:cover" onerror="ph(this)"></div>
         <div class="im"><img src="images/peel_2.jpg" alt="Салонный пилинг кожи головы и массаж" loading="lazy" style="object-fit:cover" onerror="ph(this)"></div>
       </div>
       <h3 class="fh text-lg font-bold">Пилинг кожи головы и детокс системы</h3>
@@ -2590,6 +2717,13 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </footer>
 
+<!-- Плавающая кнопка «Наверх» -->
+<button id="back-to-top" type="button" aria-label="Вернуться наверх" class="back-to-top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
 <!-- Плавающая панель быстрой связи внизу экрана -->
 <nav aria-label="Быстрая связь" class="bar fixed z-40 bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 p-1.5 rounded-full bg-white shadow-xl w-max max-w-[calc(100vw-1rem)]" style="border:1px solid var(--line)">
   <a data-l="max" target="_blank" rel="noopener" class="btn s" style="background:#8A3FFC;color:#fff">MAX</a>
@@ -2600,7 +2734,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Модальное окно подтверждения заявки -->
 <div id="modal" hidden class="fixed inset-0 z-50 items-center justify-center p-4" style="background:rgba(43,36,48,.6)" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="card max-w-md w-full p-6 text-center">
+  <div class="card max-w-md w-full p-6 text-center relative" style="position:relative">
+    <button type="button" data-x class="modal-close-btn" aria-label="Закрыть">✕</button>
     <div id="modal-icon" class="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style="background:#f3e8ff;color:#8A3FFC">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
     </div>
@@ -2623,7 +2758,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div id="adm-setup-card" class="adm-card" style="display:none">
     <div class="adm-header">
       <h2>Настройка доступа</h2>
-      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()" aria-label="Закрыть">✕</button>
     </div>
     <div class="adm-body">
       <div class="adm-alert info">
@@ -2660,7 +2795,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div id="adm-login-card" class="adm-card" style="display:none">
     <div class="adm-header">
       <h2>Вход для администратора</h2>
-      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()" aria-label="Закрыть">✕</button>
     </div>
     <div class="adm-body">
       <div id="adm-lockout-banner" class="adm-alert danger" style="display:none">
@@ -2697,7 +2832,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <div id="adm-forgot-card" class="adm-card" style="display:none">
     <div class="adm-header">
       <h2>Восстановление доступа</h2>
-      <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+      <button type="button" class="adm-close-btn" onclick="closeAdminModal()" aria-label="Закрыть">✕</button>
     </div>
     <div class="adm-body">
       <!-- Шаг 1: ввод почты -->
@@ -2800,7 +2935,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <svg class="adm-svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           <span>Выйти</span>
         </button>
-        <button type="button" class="adm-close-btn" onclick="closeAdminModal()">✕</button>
+        <button type="button" class="adm-close-btn" onclick="closeAdminModal()" aria-label="Закрыть">✕</button>
       </div>
     </div>
 
@@ -2899,11 +3034,11 @@ document.addEventListener('DOMContentLoaded', () => {
       <div id="tab-contacts" class="adm-tab-content" style="display:none">
         <div class="adm-form-group">
           <label>Номер телефона (отображение)</label>
-          <input type="text" id="adm-cfg-phone-text" class="adm-input" placeholder="+7 (988) 063-98-60">
+          <input type="tel" inputmode="tel" id="adm-cfg-phone-text" class="adm-input" placeholder="+7 (988) 063-98-60">
         </div>
         <div class="adm-form-group">
           <label>Номер телефона (только цифры для звонка и WhatsApp)</label>
-          <input type="text" id="adm-cfg-phone-digits" class="adm-input" placeholder="79880639860">
+          <input type="tel" inputmode="numeric" id="adm-cfg-phone-digits" class="adm-input" placeholder="79880639860">
         </div>
         <div class="adm-form-group">
           <label>Telegram мастера для заявок (username без @)</label>
