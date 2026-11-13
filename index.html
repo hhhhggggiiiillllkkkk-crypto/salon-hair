@@ -27,7 +27,7 @@
 <meta property="og:title" content="Центр Здоровых Волос, Астрахань">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#e48fd8">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HairSalon","name":"Центр Здоровых Волос","telephone":"+79880639860","address":{"@type":"PostalAddress","streetAddress":"ул. Котовского, 8а, офис 5","addressLocality":"Астрахань","postalCode":"414045","addressCountry":"RU"},"geo":{"@type":"GeoCoordinates","latitude":46.342538,"longitude":48.023369},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Sunday"],"opens":"11:00","closes":"20:00"}],"sameAs":["https://vk.ru/keratin_astrakhan","https://www.instagram.com/dr.hair30","https://t.me/drhair30","https://t.me/VK30rus","https://max.ru/u/f9LHodD0cOKH4tpDfES8s2NN1KwC1JOP-9gtKVqNoGkdJImpYloST-JvAvc"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HairSalon","name":"Центр Здоровых Волос","telephone":"+79880639860","address":{"@type":"PostalAddress","streetAddress":"ул. Котовского, 8а, офис 5","addressLocality":"Астрахань","postalCode":"414045","addressCountry":"RU"},"geo":{"@type":"GeoCoordinates","latitude":46.342538,"longitude":48.023369},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"08:00","closes":"21:00"}],"sameAs":["https://vk.ru/keratin_astrakhan","https://www.instagram.com/dr.hair30","https://t.me/drhair30","https://t.me/VK30rus","https://max.ru/u/f9LHodD0cOKH4tpDfES8s2NN1KwC1JOP-9gtKVqNoGkdJImpYloST-JvAvc"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -608,10 +608,6 @@ const ORDER_TELEGRAM = "VK30rus";
 const CHANNEL_TELEGRAM = "drhair30";
 // Телефон (только цифры) и отображение:
 const PHONE = "79880639860", PHONE_TEXT = "+7 (988) 063-98-60";
-// Часы работы по Астрахани (Europe/Astrakhan):
-// Понедельник: 11:00–20:00, Воскресенье: 11:00–20:00, Вт–Сб: выходной
-const HOURS = {0:[11,20], 1:[11,20]};
-const HOURS_TEXT = "Пн и Вс: 11:00–20:00 · Вт–Сб: выходной";
 
 const $ = s => document.querySelector(s), $$ = s => document.querySelectorAll(s);
 
@@ -624,54 +620,6 @@ function ph(i){
   i.replaceWith(d);
 }
 
-// Проверка работы по времени Астрахани (Europe/Astrakhan)
-function updateSalonStatus(){
-  let isOpen = false;
-  let statusText = 'Сейчас закрыто';
-  try {
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'Europe/Astrakhan',
-      weekday: 'short',
-      hour: 'numeric',
-      hourCycle: 'h23'
-    });
-    const parts = formatter.formatToParts(new Date());
-    const wdStr = parts.find(p => p.type === 'weekday').value;
-    const hour = parseInt(parts.find(p => p.type === 'hour').value, 10);
-    const dayMap = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-    const day = dayMap[wdStr] ?? new Date().getDay();
-    const hoursToday = HOURS[day];
-    isOpen = !!hoursToday && hour >= hoursToday[0] && hour < hoursToday[1];
-    if (isOpen) {
-      statusText = 'Открыто сейчас (до 20:00)';
-    } else if (!hoursToday) {
-      statusText = 'Сейчас закрыто (выходной)';
-    } else if (hour < hoursToday[0]) {
-      statusText = 'Сейчас закрыто (откроется в 11:00)';
-    } else {
-      statusText = 'Сейчас закрыто';
-    }
-  } catch (err) {
-    const d = new Date(Date.now() + 4 * 3600000); // UTC+4 для Астрахани
-    const hour = d.getUTCHours();
-    const day = d.getUTCDay();
-    const hoursToday = HOURS[day];
-    isOpen = !!hoursToday && hour >= hoursToday[0] && hour < hoursToday[1];
-    if (isOpen) {
-      statusText = 'Открыто сейчас (до 20:00)';
-    } else if (!hoursToday) {
-      statusText = 'Сейчас закрыто (выходной)';
-    } else {
-      statusText = 'Сейчас закрыто';
-    }
-  }
-  const st = $('#st'), dot = $('#dot');
-  if (st && dot) {
-    st.textContent = statusText;
-    dot.classList.toggle('on', isOpen);
-  }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   const L = {
     max: MAX_URL,
@@ -682,11 +630,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   $$('[data-l]').forEach(a => a.href = L[a.dataset.l]);
   $$('[data-ph]').forEach(e => e.textContent = PHONE_TEXT);
-  $$('[data-hrs]').forEach(e => e.textContent = HOURS_TEXT);
-
-  // Синхронизация рабочего времени
-  updateSalonStatus();
-  setInterval(updateSalonStatus, 30000);
 
   // Выбор услуг в каталоге
   const sel = new Set(), chosen = $('#chosen');
@@ -1041,16 +984,16 @@ function getActiveAuth() {
 
 // 1. Дефолтная конфигурация Центра Здоровых Волос
 const DEFAULT_DH_CONFIG = {
-  hoursShort: "Пн и Вс: 11:00–20:00 · Вт–Сб: выходной",
-  hoursDetail: "Понедельник: 11:00–20:00\nВторник – суббота: выходной\nВоскресенье: 11:00–20:00",
+  hoursShort: "Пн–Вс: 08:00–21:00 (ежедневно)",
+  hoursDetail: "Ежедневно: 08:00–21:00",
   schedule: {
-    0: { active: true, from: 11, to: 20 }, // Воскресенье
-    1: { active: true, from: 11, to: 20 }, // Понедельник
-    2: { active: false, from: 11, to: 20 }, // Вторник
-    3: { active: false, from: 11, to: 20 }, // Среда
-    4: { active: false, from: 11, to: 20 }, // Четверг
-    5: { active: false, from: 11, to: 20 }, // Пятница
-    6: { active: false, from: 11, to: 20 }  // Суббота
+    0: { active: true, from: "08:00", to: "21:00" }, // Воскресенье
+    1: { active: true, from: "08:00", to: "21:00" }, // Понедельник
+    2: { active: true, from: "08:00", to: "21:00" }, // Вторник
+    3: { active: true, from: "08:00", to: "21:00" }, // Среда
+    4: { active: true, from: "08:00", to: "21:00" }, // Четверг
+    5: { active: true, from: "08:00", to: "21:00" }, // Пятница
+    6: { active: true, from: "08:00", to: "21:00" }  // Суббота
   },
   announcement: {
     enabled: false,
@@ -1389,7 +1332,16 @@ function onScheduleTimeInput() {
 function getActiveConfig() {
   try {
     const raw = localStorage.getItem(DH_STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.hoursShort && (parsed.hoursShort.includes('11:00–20:00') || parsed.hoursShort.includes('Вт–Сб: выходной') || parsed.hoursShort.includes('Вт–Сб: выходной'.toLowerCase()))) {
+        parsed.hoursShort = DEFAULT_DH_CONFIG.hoursShort;
+        parsed.hoursDetail = DEFAULT_DH_CONFIG.hoursDetail;
+        parsed.schedule = DEFAULT_DH_CONFIG.schedule;
+        saveActiveConfig(parsed);
+      }
+      return parsed;
+    }
   } catch (e) {}
   return DEFAULT_DH_CONFIG;
 }
@@ -2867,7 +2819,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Верхняя информационная полоса -->
 <div class="text-xs md:text-sm text-center py-1.5 px-3" style="background:var(--soft);color:var(--mute);border-bottom:1px solid var(--line)">
-  Астрахань, ул. Котовского, 8а, офис 5 · <span data-hrs></span>
+  Астрахань, ул. Котовского, 8а, офис 5 · <span data-hrs>Пн–Вс: 08:00–21:00 (ежедневно)</span>
 </div>
 
 
@@ -2884,7 +2836,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="text-xs mu flex items-center gap-1.5"><i id="dot" class="dot"></i><span id="st">Астрахань</span></span>
     </div>
     <div class="ml-auto flex items-center gap-4">
-      <nav class="hidden md:flex gap-5 text-sm font-medium" aria-label="Разделы"><a href="#services">Услуги</a><a href="#about">О центре</a><a href="#booking">Запись</a><a href="#contacts">Контакты</a></nav>
+      <nav class="hidden md:flex gap-5 text-sm font-medium" aria-label="Разделы"><a href="#services">Услуги</a><a href="#reviews-block">Отзывы</a><a href="#about">О центре</a><a href="#booking">Запись</a><a href="#contacts">Контакты</a></nav>
       <a data-l="tel" data-ph class="hidden sm:block font-semibold whitespace-nowrap"></a>
       <a href="#booking" id="hb" class="btn s">Записаться</a>
     </div>
@@ -2903,6 +2855,28 @@ document.addEventListener('DOMContentLoaded', () => {
         Бесплатный подбор процедуры →
       </a>
       <a href="#services" class="btn o">Каталог услуг</a>
+      <a href="#reviews-block" class="btn o" style="background:rgba(255,255,255,0.7)">⭐ Читать отзывы</a>
+    </div>
+  </div>
+</section>
+
+<!-- Плашка «Почитать отзывы на картах» -->
+<section id="reviews-block" class="sec py-4" style="padding-top:1.5rem;padding-bottom:1.5rem">
+  <div style="background:linear-gradient(135deg,#ffffff 0%,#fbf4fb 100%);border:2px solid #e9d5ff;border-radius:1.25rem;padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;box-shadow:0 8px 25px rgba(138,63,252,0.08)">
+    <div class="flex items-center gap-3.5">
+      <div style="width:48px;height:48px;border-radius:50%;background:#f3e8ff;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">⭐</div>
+      <div>
+        <div class="font-bold text-base md:text-lg" style="color:#1e1b4b">Почитать отзывы о Центре Здоровых Волос</div>
+        <div class="text-xs md:text-sm mu mt-0.5">Рейтинг 5.0 ★ Читайте реальные отзывы клиентов или оставьте свой на картах:</div>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center gap-2.5">
+      <a href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/reviews/" target="_blank" rel="noopener" class="btn s" style="background:#fc3f1d;color:#fff;display:inline-flex;align-items:center;gap:6px;font-weight:600;padding:0.6rem 1.1rem;box-shadow:0 3px 10px rgba(252,63,29,0.25)">
+        <span>Яндекс Карты ★ 5.0</span>
+      </a>
+      <a href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/tab/reviews" target="_blank" rel="noopener" class="btn s" style="background:#2bba00;color:#fff;display:inline-flex;align-items:center;gap:6px;font-weight:600;padding:0.6rem 1.1rem;box-shadow:0 3px 10px rgba(43,186,0,0.25)">
+        <span>2ГИС ★ 5.0</span>
+      </a>
     </div>
   </div>
 </section>
@@ -3211,7 +3185,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="font-semibold">г. Астрахань, Кировский район</p>
       <p class="mu"><a href="https://2gis.ru/astrakhan/geo/1126535562026980" target="_blank" rel="noopener" class="underline">ул. Котовского, 8а</a>, 5 офис, 2 этаж, 414045</p>
       <p class="mt-3 font-semibold">Часы работы</p>
-      <p class="mu" id="contacts-hours-detail">Понедельник: 11:00–20:00<br>Вторник – суббота: выходной<br>Воскресенье: 11:00–20:00</p>
+      <p class="mu" id="contacts-hours-detail">Ежедневно: 08:00–21:00</p>
       <p class="mt-3"><a data-l="tel" data-ph class="font-semibold underline"></a></p>
       
       <div class="mt-3 flex flex-wrap gap-2">
@@ -3223,12 +3197,12 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       
       <div class="mt-4 pt-3" style="border-top:1px solid #e5e7eb">
-        <p class="text-xs uppercase tracking-wider font-semibold mb-2" style="color:var(--muted)">⭐ Отзывы и карты</p>
+        <p class="text-xs uppercase tracking-wider font-semibold mb-2" style="color:var(--muted)">⭐ Почитать отзывы и карты</p>
         <div class="flex flex-wrap gap-2">
-          <a class="btn s" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/reviews/" style="background:#fc3f1d;color:#fff">Почитать отзывы на Яндекс Картах</a>
-          <a class="btn s" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/tab/reviews" style="background:#2bba00;color:#fff">Почитать отзывы в 2ГИС</a>
-          <a class="btn s o" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/">Яндекс Карты</a>
-          <a class="btn s o" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/48.023529%2C46.342625">2ГИС</a>
+          <a class="btn s" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/reviews/" style="background:#fc3f1d;color:#fff;font-weight:600">Яндекс Карты ★ 5.0 (Отзывы)</a>
+          <a class="btn s" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/tab/reviews" style="background:#2bba00;color:#fff;font-weight:600">2ГИС ★ 5.0 (Отзывы)</a>
+          <a class="btn s o" target="_blank" rel="noopener" href="https://yandex.ru/maps/org/tsentr_zdorovykh_volos/234143846150/">Маршрут на Яндекс Картах</a>
+          <a class="btn s o" target="_blank" rel="noopener" href="https://2gis.ru/astrakhan/search/%D1%86%D0%B5%D0%BD%D1%82%D1%80%20%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8B%D1%85%20%D0%B2%D0%BE%D0%BB%D0%BE%D1%81/firm/70000001114822465/48.023529%2C46.342625">Маршрут в 2ГИС</a>
         </div>
       </div>
     </div>
